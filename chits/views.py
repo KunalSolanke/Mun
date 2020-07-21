@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from djano.contrib import messages 
+from django.contrib import messages 
 from rest_framework.authentication import SessionAuthentication,BasicAuthentication
-from rest_framework.permissions import IsAutheticated 
+from rest_framework.permissions import IsAuthenticated 
 from rest_framework.generics import ListAPIView
 from chits.serializers import ChitSerializer
 from chits.models import Chit
@@ -96,7 +96,8 @@ class DeligateReply(LoginRequiredMixin,View) :
 
         return HttpResponse("Reply to chit {} sent to moderator".format(replt_to))
 
- deligate_reply = DeligateReply.as_view()       
+
+deligate_reply = DeligateReply.as_view()       
         
 
 
@@ -131,7 +132,7 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
 
         return HttpResponse("Approved")
 
-moderator_index= ModeratorIndexapprove.as_view()
+moderator_index= ModeratorIndexApprove.as_view()
 
 
 
@@ -245,7 +246,7 @@ judge_index_reject = JudgeIndexReject.as_view()
 
 
 class ChitListView(ListAPIView) :
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication,BasicAuthentication]
     serializer_class = ChitSerializer 
 
@@ -274,7 +275,7 @@ chitlist = ChitListView.as_view()
 
 
 class TeamChitListView(ListAPIView) :
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication,BasicAuthentication]
     serializer_class = ChitSerializer 
 
