@@ -54,7 +54,7 @@ class DeligateProfile(models.Model) :
     country = models.OneToOneField(Country,related_name='deligate',on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    contact = models.IntegerField()
+    contact = models.IntegerField(blank=True,null=True)
 
 
     class Meta :
@@ -83,7 +83,7 @@ class Profile(models.Model) :
     user= models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
     first_name = models.CharField(max_length=255)
     last_name= models.CharField(max_length=255)
-    contact = models.IntegerField()
+    contact = models.IntegerField(blank=True,null=True)
 
     class Meta :
         verbose_name="judge_and_moderator_profile"
