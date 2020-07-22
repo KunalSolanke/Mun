@@ -7,7 +7,6 @@ from accounts.models import Country,Team
 
 
 
-
 class Chit(models.Model) :
     class Status(models.IntegerChoices):
             DISAPPROVED=0
@@ -16,12 +15,15 @@ class Chit(models.Model) :
             RATIFIED= 3
 
     
-    chit = models.TextField(blank=False)
+    
+    chit = models.TextField(_("chit"),blank=False) #message
     chit_from = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='sent_chits')
     chit_to = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='received_chits')
     status = models.IntegerField(choices=Status.choices)
     timestamp = models.DateTimeField(auto_now=True,auto_now_add=False)
+
     reply_to_chit = models.OneToOneField(to='self',null=True,blank=True,on_delete=models.CASCADE,related_name='reply')
+
 
 
     class Meta :
