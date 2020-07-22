@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from account.models import Country 
+from .models import Country 
 from chits.models import Chit
 
 

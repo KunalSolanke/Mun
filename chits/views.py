@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from djano.contrib import messages 
+from django.contrib import messages 
 from rest_framework.authentication import SessionAuthentication,BasicAuthentication
-from rest_framework.permissions import IsAutheticated 
+from rest_framework.permissions import IsAuthenticated 
 from rest_framework.generics import ListAPIView
 from chits.serializers import ChitSerializer
 from chits.models import Chit
@@ -53,9 +53,7 @@ class DeligateIndex(LoginRequiredMixin,View) :
 
         chit.save()
         # messages.success(request ,"Chit sent to Moderator for checking")
-
         return  HttpResponse("Chit sent to Moderator for checking")
-
 
 deligate_index = DeligateIndex.as_view()
 
@@ -96,7 +94,7 @@ class DeligateReply(LoginRequiredMixin,View) :
 
         return HttpResponse("Reply to chit {} sent to moderator".format(replt_to))
 
- deligate_reply = DeligateReply.as_view()       
+deligate_reply = DeligateReply.as_view()       
         
 
 
@@ -122,7 +120,7 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
     def post(self,request) :
         chit_id = request.POST['chit_id']
         chit = Chit.objects.get(pk=chit_id)
-        if chit.reply_to_chit and Chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
+        if chit.reply_to_chit and chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
             return HttpResponse("This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
 
@@ -131,7 +129,7 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
 
         return HttpResponse("Approved")
 
-moderator_index= ModeratorIndexapprove.as_view()
+moderator_index= ModeratorIndexApprove.as_view()
 
 
 
@@ -245,7 +243,7 @@ judge_index_reject = JudgeIndexReject.as_view()
 
 
 class ChitListView(ListAPIView) :
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication,BasicAuthentication]
     serializer_class = ChitSerializer 
 
@@ -274,7 +272,7 @@ chitlist = ChitListView.as_view()
 
 
 class TeamChitListView(ListAPIView) :
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
     authentication_classes = [SessionAuthentication,BasicAuthentication]
     serializer_class = ChitSerializer 
 

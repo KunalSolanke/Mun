@@ -1,12 +1,8 @@
 from django.shortcuts import render,redirect
-from accounts.models import User 
+from accounts.models import UserProfile 
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 # Create your views here.
-
-
-
-
 
 def login(requset) :
     if request.method == "POST" :
@@ -18,7 +14,7 @@ def login(requset) :
             messages.success(requset,"Logged in successfully")
             role = user.role 
             if role =="DT" :
-                return redirect('chit:deligate_index')
+                return redirect('chits:deligate_index')
             elif role=="MD" :
                 return redirect('chits:moderator_index')
             elif role =="JD" :
