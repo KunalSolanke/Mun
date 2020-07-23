@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+import json
 # Create your views here.
 
 
@@ -77,10 +78,12 @@ class DeligateReply(LoginRequiredMixin,View) :
 
 
     def post(self,request) :
-        reply_to = self.kwargs['chit_id']
+        reply_to = request.POST['chit_to']
         if Chit.objects.get(reply_to_chit=reply_to,status = 3).exists() :
             # messages.error(request,"This chit have already been replied to.Please wait for the reply to show up or refresh the page")
-            return HttpResponse("This chit have already been replied to.Please wait for the reply to show up or refresh the page")
+            return HttpResponse(json.dumps({
+            "message":"This chit have already been replied to.Please wait for the reply to show up or refresh the page"
+            }),content_type="application/json")
 
 
 
@@ -92,7 +95,9 @@ class DeligateReply(LoginRequiredMixin,View) :
         chit.save()
         # messages.success(request,"Reply to chit {} sent to moderator".format(replt_to))
 
-        return HttpResponse("Reply to chit {} sent to moderator".format(replt_to))
+        return HttpResponse(json.dumps({
+            "message":"Reply to chit {} sent to moderator".format(replt_to)
+        }),content_type="application/json")
 
 deligate_reply = DeligateReply.as_view()       
         
@@ -122,12 +127,16 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
         chit = Chit.objects.get(pk=chit_id)
         if chit.reply_to_chit and chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
-            return HttpResponse("This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
+            return HttpResponse(json.dumps({
+            "message":return HttpResponse("This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
+            }),content_type="application/json")
 
         chit.status =2 
         chit.save()
 
-        return HttpResponse("Approved")
+        return HttpResponse(json.dumps({
+            "message":"Approved"
+        }),content_type="application/json")
 
 moderator_index= ModeratorIndexApprove.as_view()
 
@@ -154,7 +163,9 @@ class ModeratorIndexDisapprove(LoginRequiredMixin,View) :
         chit.status = 0 
         chit.save() 
         # messages.success(request ,"Disapproved")
-        return HttpResponse("Disapproved")
+        return HttpResponse(json.dumps({
+            "message":"Disapproved"
+        }),content_type="application/json")
 
 moderator_index_disapprove = ModeratorIndexDisapprove.as_view()
 
@@ -189,7 +200,9 @@ class JudgeIndexRatify(LoginRequiredMixin,View) :
 
         if chit.reply_to_chit and Chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} .You have already ratifiied a reply to the same .".format(reply_to))
-            return HttpResponse("This is a reply chit to chit_id {} .You have already ratifiied a reply to the same .".format(reply_to))
+            return HttpResponse(json.dumps({
+            "message":"This is a reply chit to chit_id {} .You have already ratifiied a reply to the same .".format(reply_to)
+        }),content_type="application/json")
 
 
 
@@ -197,7 +210,9 @@ class JudgeIndexRatify(LoginRequiredMixin,View) :
         chit.save()
         # messages.success(request,'')
 
-        return HttpResponse("Ratified")
+        return HttpResponse(json.dumps({
+            "message":"Ratified"
+        }),content_type="application/json")
 
 
 judge_index = JudgeIndexRatify.as_view()
@@ -225,7 +240,9 @@ class JudgeIndexReject(LoginRequiredMixin,View) :
         chit.status = 0 
         chit.save() 
         # messages.success(request ,"Ignored")
-        return HttpResponse("Ignored")
+        return HttpResponse(json.dumps({
+            "message":"Ignored"
+        }),content_type="application/json")
 
 judge_index_reject = JudgeIndexReject.as_view()
 
@@ -256,7 +273,7 @@ class ChitListView(ListAPIView) :
         elif user.role == "JD" :
                 queryset = Chit.objects.filter(status =2) 
         
-        return queryset 
+        return queryset[:10] 
 
 
 chitlist = ChitListView.as_view()
