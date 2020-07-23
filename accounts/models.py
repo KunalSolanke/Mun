@@ -4,17 +4,12 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
-
-
 # Create your models here.
 
 
 
 
-
-
-
-class UserProfile(AbstractUser) :
+class User(AbstractUser) :
 
     class Role(models.TextChoices) :
         MODERATOR = 'MD',_("moderator")
@@ -23,7 +18,7 @@ class UserProfile(AbstractUser) :
 
         
     username = models.CharField(max_length=255,unique=True) 
-    email =  models.EmailField(unique=True)
+    email =  models.EmailField(blank=True,null=True)
     role = models.CharField(max_length=30,
     choices=Role.choices,
     blank=True)
