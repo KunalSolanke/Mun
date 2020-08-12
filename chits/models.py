@@ -8,11 +8,6 @@ from accounts.models import Country,Team
 
 
 
-
-
-
-
-
 class Chit(models.Model) :
     class Status(models.IntegerChoices):
             DISAPPROVED=0
@@ -24,7 +19,7 @@ class Chit(models.Model) :
     
     chit = models.TextField(_("chit"),blank=False) #message 
     chit_from = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='sent_chits')
-    chit_to = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='received_chits')
+    chit_to = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='received_chits',blank=True,null=True)
     status = models.IntegerField(choices=Status.choices)
     timestamp = models.DateTimeField(auto_now=True,auto_now_add=False)
     reply_to_chit = models.OneToOneField('self',null=True,blank=True,on_delete=models.CASCADE,related_name="reply")
@@ -35,10 +30,6 @@ class Chit(models.Model) :
         get_latest_by = "-timestamp"
         verbose_name_plural = "chits"
         verbose_name="chit"
-
-    
-
-
 
 
 

@@ -4,6 +4,9 @@ app_name = 'accounts'
 
 
 urlpatterns = [
-   path('login/',view= login,name= 'login'),
-   #path('entry/',view=data_entry,name='data')
+   path('login/',view=login,name= 'login'),
+   path('entry/',view=Entry,name='entry'),
+   path('update/',view=Update,name='update'),
+   path('logout/',view=logout_user,name='logout'),
 ]
+

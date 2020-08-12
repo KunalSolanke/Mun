@@ -4,12 +4,7 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
-
-
 # Create your models here.
-
-
-
 
 
 
@@ -61,19 +56,19 @@ class DeligateProfile(models.Model) :
         verbose_name="deligate_profile"
 
 
-# @receiver(post_save,sender=settings.AUTH_USER_MODEL) 
-# def create_profile(sender,instance,created,**kwargs) :
-#    if created and instance.role=="DT":
-#        DeligateProfile.objects.create(user=instance,first_name=instance.username)
+"""@receiver(post_save,sender=settings.AUTH_USER_MODEL) 
+def create_profile(sender,instance,created,**kwargs) :
+   if created and instance.role=="DT":
+       DeligateProfile.objects.create(user=instance,first_name=instance.username)
 
-# @receiver(post_save,sender=settings.AUTH_USER_MODEL)
-# def update_profile(sender,instance,created,**kwargs) :
-#     try:
-#        if instance.role=="DT" and not created:
-#              instance.deligate_profile.save()
-#     except:
-#         if instance.role=="DT" and not created:
-#            DeligateProfile.objects.create(user=instance)
+@receiver(post_save,sender=settings.AUTH_USER_MODEL)
+def update_profile(sender,instance,created,**kwargs) :
+    try:
+       if instance.role=="DT" :
+             instance.deligate_profile.save()
+    except:
+        if instance.role=="DT" :
+           DeligateProfile.objects.create(user=instance)"""
 
 
 
@@ -81,27 +76,27 @@ class DeligateProfile(models.Model) :
 
 class Profile(models.Model) :
     user= models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
-    first_name = models.CharField(max_length=255,blank=True)
-    last_name= models.CharField(max_length=255,blank=True)
+    first_name = models.CharField(max_length=255)
+    last_name= models.CharField(max_length=255)
     contact = models.IntegerField(blank=True,null=True)
 
     class Meta :
         verbose_name="judge_and_moderator_profile"
 
 
-# @receiver(post_save,sender=settings.AUTH_USER_MODEL) 
-# def create_profile(sender,instance,created,**kwargs) :
-#    if created and instance.role!="DT":
-#        Profile.objects.create(user=instance,first_name=instance.username)
+"""@receiver(post_save,sender=settings.AUTH_USER_MODEL) 
+def create_profile(sender,instance,created,**kwargs) :
+   if created and instance.role!="DT":
+       Profile.objects.create(user=instance,first_name=instance.username)
 
-# @receiver(post_save,sender=settings.AUTH_USER_MODEL)
-# def update_profile(sender,instance,created,**kwargs) :
-#     try:
-#        if instance.role!="DT" and not created :
-#              instance.deligate_profile.save()
-#     except:
-#         if instance.role!="DT" and not created:
-#            Profile.objects.create(user=instance)
+@receiver(post_save,sender=settings.AUTH_USER_MODEL)
+def update_profile(sender,instance,created,**kwargs) :
+    try:
+       if instance.role!="DT" :
+             instance.deligate_profile.save()
+    except:
+        if instance.role!="DT" and not created :
+           Profile.objects.create(user=instance)"""
 
 
 
