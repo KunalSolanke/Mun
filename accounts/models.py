@@ -31,9 +31,9 @@ class User(AbstractUser) :
 
 
 class Country(models.Model) :
-    flag = models.ImageField(upload_to='country/')
+    flag = models.ImageField(upload_to='country/',blank=True,null=True)
     name = models.CharField(max_length=255) 
-    _id = models.CharField(max_length=255)
+    country_id = models.CharField(max_length=255)
 
 
 class Team(models.Model) :

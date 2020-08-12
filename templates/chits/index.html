@@ -1,0 +1,109 @@
+{% extends 'chits/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="message_area">
+        <div class="chit_send">
+            <div class="send_area">
+                <form>
+                <div class="input_country">
+                    <label for="">To :</label>
+                    <span >
+                    <input type="text" id="sendTo">
+                    </span>
+                </div>
+                <div class="message">
+                    <textarea  autocomplete="false"  spellcheck="false"  cols="12"  aria-expanded="false">
+
+                    </textarea>
+                </div>
+                <div class="submit">
+                            <button type ="submit">Send</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="chit_area">
+            <div class="chits_box">
+                <div class="single_chit">
+                    <div class="from">
+                            From : India < india@iitgmun >
+                    </div>
+                    <div class="reply">
+
+                    </div>
+                    <div class="content">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore fugiat tenetur, nesciunt quas obcaecati rerum, ut itaque modi tempora sunt maiores nobis explicabo natus architecto placeat ad praesentium tempore suscipit.
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure vero ducimus minima maxime deleniti cupiditate reiciendis? Ipsum quasi doloribus sed cupiditate ipsam asperiores, incidunt eaque sunt eos dicta consequuntur possimus.
+                    </div>
+                    <div class=" reply_button">
+                                <button type="send">reply</button>
+                    </div>
+                </div>
+                <div class="single_chit">
+                    <div class="from">
+                        Reply from UK to India's message
+                    </div>
+                    <div class="from">
+                    From : India < india@iitgmun >
+
+                    </div>
+                    <div class="content">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates inventore placeat necessitatibus, vitae numquam quia in quaerat adipisci totam accusantium nihil natus, saepe expedita sequi dolores dignissimos et architecto nobis!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam aliquam fugiat tenetur quaerat, repudiandae, vitae, iusto dicta perspiciatis ipsum quis ducimus earum inventore unde soluta asperiores! Laborum maxime tempora incidunt.
+                    </div>
+                    <div class="reply_button">
+                        <button btn="send">reply</button>
+                    </div>
+                </div>
+                <div class="single_chit">
+                <div class="from">
+                    Reply from UK to India's message
+                </div>
+                <div class="from">
+                    From : India < india@iitgmun >
+
+                </div>
+                <div class="content">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates inventore placeat necessitatibus, vitae numquam quia in quaerat adipisci totam accusantium nihil natus, saepe expedita sequi dolores dignissimos et architecto nobis!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam aliquam fugiat tenetur quaerat, repudiandae, vitae, iusto dicta perspiciatis ipsum quis ducimus earum inventore unde soluta asperiores! Laborum maxime tempora incidunt.
+                </div>
+                <div class="reply_button">
+                    <button btn="send">reply</button>
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="country_area">
+        <div class="countries">
+            <div class="head">
+                <div>Country</div>
+                <div>Id</div>
+            </div>
+            {% for country in countries %}
+            <div class="country">
+                <div>{{country.name}}</div>
+                <div>{{country.country_id }}</div>
+            </div>
+            {% endfor %}
+
+            
+        </div>
+        <div class="debate_heads">
+            <div class="head">
+                        Heads
+            </div>
+
+        </div>
+
+    </section>
+{% endblock %}
+
+
+{% block js %}
+   <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+        

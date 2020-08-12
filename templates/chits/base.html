@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DebateNation</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'  %}">
+</head>
+<body>
+    <div class="main_div">
+        <div class="sidebar">
+         <div class="flag">
+             <div>
+                 {% if user.is_authenticated  %}
+                    Flag
+                    {{user.deligate_profile.country.name  }}
+                 {% else %}
+                     Flag
+                 {% endif %}
+             </div>
+         </div>
+         <div>
+             <ul>
+                 <li><a href="#">Home</a></li>
+                 <li className="contacts_menu"><a href="#">Contacts</a></li>
+             </ul>
+         </div>
+        </div>
+        <div class="main_area">
+            
+            <header>
+               <nav class="navbar">
+                    <div class="logo">
+                        <h1>IITGMUN</h1>
+                    </div>
+                    <div class="logout">
+                       <ul>
+                           <li><a href="/logout">Logout</a></li>
+                       </ul>
+                    </div>
+                    <div class="nav__toggle">
+                         <div class="line1"></div>
+                         <div class="line2"></div>
+                         <div class="line3"></div>
+                    </div>
+               </nav>
+            </header>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    {% block js%} 
+    {% endblock %}
+</body>
+</html>

@@ -33,6 +33,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class DeligateIndex(LoginRequiredMixin,View) :
     template_name= "chits/index.html"
     login_url = '/accounts/login/'
+    
 
 
     def get(self,request) :
