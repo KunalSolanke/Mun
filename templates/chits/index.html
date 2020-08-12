@@ -8,11 +8,11 @@
                 <div class="input_country">
                     <label for="">To :</label>
                     <span >
-                    <input type="text" id="sendTo">
+                    <input type="text" id="sendTo" name="country_name">
                     </span>
                 </div>
                 <div class="message">
-                    <textarea  autocomplete="false"  spellcheck="false"  cols="12"  aria-expanded="false">
+                    <textarea  autocomplete="false"  spellcheck="false"  cols="12"  aria-expanded="false" name="chit">
 
                     </textarea>
                 </div>
@@ -104,6 +104,8 @@
 
 
 {% block js %}
-   <script src="{% static 'js/main.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/fetchMessages.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/Deligate.js' %}"></script>
 {% endblock %}
         

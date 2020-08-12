@@ -1,11 +1,7 @@
-let textbox = document.getElementById("textbox")
-
+let textbox = document.querySelector(".chits_box")
 let Success = ""
-
 let errorMessage = ""
-
-let form = document.getElementById("form")
-
+let form = document.querySelector("form")
 
 const SetMessages = ()=>{
     textbox.innerHTML = ""
@@ -47,11 +43,19 @@ const SetMessages = ()=>{
     })
 }
 
-form.addEventListener('submit',()=>{
-    let formData = new FormData(form)
+
+
+
+
+form.addEventListener('submit',(e)=>{
+    e.preventDefault() ;
+    let formData = new FormData(form) 
     fetch('/chits/deligate/',{
         method:'POST',
-        body:JSON.stringify(formData),
+        body:JSON.stringify({
+            "country":formData.getAll("country_name")[0],
+            "chit" : formData.getAll("chit")[0]
+    }),
         headers:{
             'Content-Type':'application/json'
         }

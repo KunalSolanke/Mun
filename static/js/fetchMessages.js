@@ -1,5 +1,4 @@
 let chits = [];
-
 const Messages = ()=>{
     fetch('/chits/api/messages',{
         method:'GET',
@@ -15,5 +14,4 @@ const Messages = ()=>{
     return chits
 }
 
-//setInterval(Messages, 60000)
 
