@@ -1,6 +1,7 @@
+var countries   ;
 window.addEventListener('load',()=>{
-    const countries = document.querySelectorAll('.country')
-    const inputField = document.querySelector('#sendTo')
+    SetMessages()
+    countries = document.querySelectorAll('.country')
     countries.forEach(country =>{
         country.addEventListener('click',()=>{
                 inputField.value = country.querySelectorAll('div')[1].innerText ;
@@ -28,6 +29,7 @@ window.addEventListener('load',()=>{
             main_div.style.transform =`translateX(0px)` ;
         }
     })
+  
 })
 
 

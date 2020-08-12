@@ -7,14 +7,14 @@ from chits.models import Chit
 class CountrySerializer(serializers.ModelSerializer) :
     class Meta :
         model = Country
-        fields = ['name','_id']
+        fields = ['name','country_id']
 
 
 
 class ChitSerializer(serializers.ModelSerializer) :
     chit_from = CountrySerializer() 
     chit_to = CountrySerializer()
-    reply_to_country = serializers.CharField(source='reply_to_chit.chit_from.name',required=False) 
+    reply_to_country = serializers.CharField(source='reply_to_chit.chit_from.country_id',required=False) 
     class Meta :
         model= Chit
         fields = ['id','chit_from','chit_to','timestamp','status','chit','reply_to_country']

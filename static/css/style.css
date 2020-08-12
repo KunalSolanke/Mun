@@ -24,7 +24,6 @@ body{
 }
 
 .main_div .sidebar{
-    width :500px ;
     min-width :150px !important ;
     border:1.2px solid black ;
     overflow: hidden;
@@ -236,7 +235,9 @@ nav .nav__toggle .line3{
   
   
 }
-
+.main_area .message_area button:focus{
+    background-color: yellow;
+}
 
 
 .main_area .chit_area{
@@ -277,11 +278,9 @@ nav .nav__toggle .line3{
     line-height: 1.5rem;
 
 }
-
-.main_area .chit_area .chits_box .single_chit .from{
+.main_area .chit_area .chits_box .single_chit .from,.main_area .chit_area .chits_box .single_chit .reply{
     margin-bottom: .6rem;
 }
-
 
 .main_area .chit_area .chits_box .single_chit .content{
     margin-bottom: .3rem;
@@ -404,10 +403,7 @@ section.country_area{
   
     
    
-    .main_div .sidebar{
-        width :100px !important ;
-        
-    }
+    
     
     
     .main_div .sidebar .flag {

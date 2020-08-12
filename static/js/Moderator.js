@@ -9,8 +9,13 @@ const SetMessages = ()=>{
     const chits = Messages()
     chits.forEach(message=>{
         const wrapper = document.createElement('div')
+        wrapper.classList.add("single_chit")
         const header = document.createElement('div')
+        header.classList.add("from")
         const content = document.createElement('div')
+        content.classList.add("content")
+        const button_wrapper = document.createElement('div')
+        button_wrapper.classList.add('reply_button')
         const ApproveButton = document.createElement('button') 
         const DisapproveButton = document.createElement('button') 
 
@@ -53,14 +58,16 @@ const SetMessages = ()=>{
             .then(data=>Success=data.message)
             .catch(error=>errorMessage=error.message)
         })
+
+        button_wrapper.appendChild(ApproveButton)
+        button_wrapper.appendChild(DisapproveButton)
         wrapper.appendChild(header)
         wrapper.appendChild(content)
-        wrapper.appendChild(ApproveButton)
-        wrapper.appendChild(DisapproveButton)
+        wrapper.appendChild(button_wrapper)
         textbox.appendChild(wrapper)
     })
 }
 
-setInterval(SetMessages, 60000)
+setInterval(SetMessages, 10000)
 
 

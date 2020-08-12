@@ -26,7 +26,7 @@ class Chit(models.Model) :
 
 
     class Meta :
-        ordering = ["-timestamp"]
+        ordering = ["timestamp"]
         get_latest_by = "-timestamp"
         verbose_name_plural = "chits"
         verbose_name="chit"

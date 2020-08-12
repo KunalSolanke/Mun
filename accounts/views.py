@@ -59,7 +59,7 @@ def Entry(request):
 
 
 
-# def data_entry(request) :
+#def data_entry(request) :
 
 #     #   for i in range(75) :
 #     #       Country.objects.create(name="Country_{}".format(i+1),country_id="country_{}@iitgmun".format(i+1))

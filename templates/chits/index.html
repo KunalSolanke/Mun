@@ -5,6 +5,9 @@
         <div class="chit_send">
             <div class="send_area">
                 <form>
+                    <div style="display:none">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+                    </div>
                 <div class="input_country">
                     <label for="">To :</label>
                     <span >
@@ -17,14 +20,14 @@
                     </textarea>
                 </div>
                 <div class="submit">
-                            <button type ="submit">Send</button>
+                            <button type ="submit" class="chit_send_button">Send</button>
                 </div>
             </form>
             </div>
         </div>
         <div class="chit_area">
             <div class="chits_box">
-                <div class="single_chit">
+                <!-- <div class="single_chit">
                     <div class="from">
                             From : India < india@iitgmun >
                     </div>
@@ -70,7 +73,7 @@
                 <div class="reply_button">
                     <button btn="send">reply</button>
                 </div>
-            </div>
+            </div> -->
             </div>
 
         </div>
@@ -104,8 +107,8 @@
 
 
 {% block js %}
-   <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/fetchMessages.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/Deligate.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock %}
         

@@ -46,15 +46,13 @@ class DeligateIndex(LoginRequiredMixin,View) :
          
 
     def post(self,request) :
-        chit_to=Country.objects.get(_id= request.POST['chit_to'])
-        chit_from=request.user.delegate_profile.country
-        chit_content =request.POST['content']
-
+        request_data = json.loads(request.body)
+        chit_to=Country.objects.get(country_id= request_data.get('chit_to'))
+        chit_from=request.user.deligate_profile.country
+        chit_content =request_data['content']
         chit = Chit.objects.create(chit_from = chit_from,chit_to=chit_to
         ,chit=chit_content,status =1)
-
         chit.save()
-        # messages.success(request ,"Chit sent to Moderator for checking")
         return  HttpResponse("Chit sent to Moderator for checking")
 
 deligate_index = DeligateIndex.as_view()
@@ -79,25 +77,25 @@ class DeligateReply(LoginRequiredMixin,View) :
 
 
     def post(self,request) :
-        reply_to = request.POST['chit_to']
-        if Chit.objects.get(reply_to_chit=reply_to,status = 3).exists() :
+        request_data = json.loads(request.body)
+        reply_to = request_data['reply_to']
+        if Chit.objects.filter(reply_to_chit=int(reply_to),status = 3).exists() :
             # messages.error(request,"This chit have already been replied to.Please wait for the reply to show up or refresh the page")
             return HttpResponse(json.dumps({
             "message":"This chit have already been replied to.Please wait for the reply to show up or refresh the page"
             }),content_type="application/json")
 
-
-
-        chit_to=Country.objects.get(name = request.POST['chit_to'])
-        chit_content =request.POST['content']
-        chit = Chit.objects.create(chit_from = request.user.delegate_profile.country ,chit_to=chit_to
-        ,chit=chit_content,status =1,reply_to_chit=reply_to)
+        chit_to=Country.objects.get(country_id= request_data['chit_to'])
+        reply_to_chit = Chit.objects.get(pk=int(reply_to))
+        chit_content =request_data['content']
+        chit = Chit.objects.create(chit_from = request.user.deligate_profile.country ,chit_to=chit_to
+        ,chit=chit_content,status =1,reply_to_chit=reply_to_chit)
 
         chit.save()
         # messages.success(request,"Reply to chit {} sent to moderator".format(replt_to))
 
         return HttpResponse(json.dumps({
-            "message":"Reply to chit {} sent to moderator".format(replt_to)
+            "message":"Reply to chit {} sent to moderator".format(reply_to)
         }),content_type="application/json")
 
 deligate_reply = DeligateReply.as_view()       
@@ -124,7 +122,8 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
 
 
     def post(self,request) :
-        chit_id = request.POST['chit_id']
+        request_data = json.loads(request.body)
+        chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id)
         if chit.reply_to_chit and chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
@@ -159,7 +158,8 @@ class ModeratorIndexDisapprove(LoginRequiredMixin,View) :
 
 
     def post(self,request) :
-        chit_id = request.POST['chit_id']
+        request_data = json.loads(request.body)
+        chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id) 
         chit.status = 0 
         chit.save() 
@@ -265,10 +265,11 @@ class ChitListView(ListAPIView) :
     authentication_classes = [SessionAuthentication,BasicAuthentication]
     serializer_class = ChitSerializer 
 
-    def get_queyset(self) :
+    def get_queryset(self) :
         user = self.request.user 
+        queryset=[]
         if user.role == "DT" :
-            queryset = Chit.objects.filter(status=3) 
+            queryset = Chit.objects.filter(status=3)
         elif user.role == "MD" :
                 queryset = Chit.objects.filter(status=1) 
         elif user.role == "JD" :
