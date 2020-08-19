@@ -1,4 +1,4 @@
-var countries   ;
+var countries ,nav_toggle,main_div,sidebar,width  ;
 window.addEventListener('load',()=>{
     SetMessages()
     countries = document.querySelectorAll('.country')
@@ -7,18 +7,25 @@ window.addEventListener('load',()=>{
                 inputField.value = country.querySelectorAll('div')[1].innerText ;
                 countries.forEach(c=>{
                     c.classList.remove('added') ;
+                    
                 })
                 country.classList.add("added")
+                inputFieldDev.classList.add('clicked')
+                inputField.classList.add('clicked')
+                setTimeout(()=>{
+                    inputFieldDev.classList.remove('clicked')
+                    inputField.classList.remove('clicked')
+                },2000)
         })
     })
 
 
     //nav_toggle
-    var nav_toggle = document.querySelector('.nav__toggle')
-    var main_div= document.querySelector('.main_div')
-    var sidebar = document.querySelector('.sidebar')
+    nav_toggle = document.querySelector('.nav__toggle')
+     main_div= document.querySelector('.main_div')
+     sidebar = document.querySelector('.sidebar')
     nav_toggle.addEventListener('click',(e)=>{
-        var width = sidebar.clientWidth ;
+         width = sidebar.clientWidth ;
        
         if(!nav_toggle.classList.contains('active')){
             nav_toggle.classList.add('active')

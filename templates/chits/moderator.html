@@ -6,7 +6,7 @@
             <div class="send_area">
                 <form>
                     <div style="display:none">
-                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" className="csrf"/>
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" class="csrf" />
                     </div>
                 <div class="input_country">
                     <label for="">To :</label>
@@ -108,7 +108,7 @@
 
 {% block js %}
    <script type="text/javascript" src="{% static 'js/fetchMessages.js' %}"></script>
-   <script type="text/javascript" src="{% static 'js/Deligate.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/Moderator.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock %}
         

@@ -9,7 +9,7 @@ app_name = 'chits'
 urlpatterns = [
     re_path(r'^api/messages/$',view=chitlist,name="chitlist") ,
     re_path(r'^api/messages/team$',view=team_chit_list,name="teamchitlist") ,
-    path('deligate/', view = deligate_index ,name = "delegate_index"),
+    path('deligate/', view = deligate_index ,name = "deligate_index"),
     path('deligate/reply', view = deligate_reply ,name = "deligate_reply"),
     path('moderator/', view = moderator_index,name = "moderator_index"),
     path('moderator/disapprove', view = moderator_index_disapprove ,name = "moderator_index_disapprove"),#only post request

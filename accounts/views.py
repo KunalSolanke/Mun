@@ -9,14 +9,16 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-def login(requset) :
+def login(request) :
     if request.method == "POST" :
-        username = requset.POST['username']
-        password = requset.POST['password']
+        
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(username = username,password=password)
         if user is not None :
-            login(requset,user) 
-            messages.success(requset,"Logged in successfully")
+            if not  request.user :
+               login(request) 
+            messages.success(request,"Logged in successfully")
             role = user.role 
             if role =="DT" :
                 return redirect('chits:deligate_index')
@@ -25,7 +27,7 @@ def login(requset) :
             elif role =="JD" :
                 return redirect('chits:judge_index')
         else :
-             messages.error(requset,"Login Failed")
+             messages.error(request,"Login Failed")
              return render(request,"accounts/login.html")
     else :
         return render(request,"accounts/login.html")

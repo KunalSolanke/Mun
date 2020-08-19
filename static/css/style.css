@@ -177,6 +177,10 @@ nav .nav__toggle .line3{
     border-bottom: none;
     padding :0.5rem 1rem ;
 }
+.main_area .message_area .chit_send .input_country.clicked,.main_area .message_area .chit_send input.clicked{
+    background-color: rgba(181, 182, 145, 0.123);
+}
+
 .main_area .message_area .chit_send input{
    padding :  0.2rem 0.5rem;
    width: 80% ;
@@ -230,14 +234,18 @@ nav .nav__toggle .line3{
     outline : none ;
     cursor: pointer;
     border-radius: .8rem;
-    padding : .4rem 1.8rem ;
+    padding : .32rem 1.8rem ;
     color :white ;
+    transition: all .2s ;
+    border : 2px solid black ;
   
   
 }
-.main_area .message_area button:focus{
-    background-color: yellow;
+.main_area .message_area button.clicked{
+    background-color: white!important;
+    color :black!important ;
 }
+
 
 
 .main_area .chit_area{
@@ -265,6 +273,9 @@ nav .nav__toggle .line3{
 .main_area .chit_area .chits_box .reply_button{
     text-align: right;
 
+}
+.main_area .chit_area .chits_box .reply_button.clicked{
+    background-color: white!important;
 }
 
 

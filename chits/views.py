@@ -53,7 +53,7 @@ class DeligateIndex(LoginRequiredMixin,View) :
         chit = Chit.objects.create(chit_from = chit_from,chit_to=chit_to
         ,chit=chit_content,status =1)
         chit.save()
-        return  HttpResponse("Chit sent to Moderator for checking")
+        return  HttpResponse(json.dumps({"message":"Chit sent to Moderator for checking","id":chit.id}),content_type="application/json")
 
 deligate_index = DeligateIndex.as_view()
 
@@ -95,7 +95,8 @@ class DeligateReply(LoginRequiredMixin,View) :
         # messages.success(request,"Reply to chit {} sent to moderator".format(replt_to))
 
         return HttpResponse(json.dumps({
-            "message":"Reply to chit {} sent to moderator".format(reply_to)
+            "message":"Reply to chit {} sent to moderator".format(reply_to),
+            "id" : chit.id
         }),content_type="application/json")
 
 deligate_reply = DeligateReply.as_view()       
@@ -196,7 +197,8 @@ class JudgeIndexRatify(LoginRequiredMixin,View) :
 
 
     def post(self,request) :
-        chit_id = request.POST['chit_id']
+        request_data = json.loads(request.body)
+        chit_id = request_data['chit_id']
         chit = get_object_or_404(Chit,pk=chit_id) 
 
         if chit.reply_to_chit and Chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
@@ -236,7 +238,8 @@ class JudgeIndexReject(LoginRequiredMixin,View) :
 
 
     def post(self,request) :
-        chit_id = request.POST['chit_id']
+        request_data = json.loads(request.body)
+        chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id) 
         chit.status = 0 
         chit.save() 
@@ -275,7 +278,7 @@ class ChitListView(ListAPIView) :
         elif user.role == "JD" :
                 queryset = Chit.objects.filter(status =2) 
         
-        return queryset[:10] 
+        return queryset[:75]
 
 
 chitlist = ChitListView.as_view()

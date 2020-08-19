@@ -1,18 +1,23 @@
+let textbox = document.querySelector(".chits_box"),
+Success = "",
+errorMessage = "",
+form = document.querySelector("form"),
+old_messages=[],
+result =[] ;
 
-var reply_to_id
-let textbox = document.querySelector(".chits_box")
-let Success = ""
-let errorMessage = ""
-let form = document.querySelector("form")
-var type ="send"
-var url ;
-var inputField = document.querySelector('#sendTo')
-var sendButton = document.querySelector('.chit_send_button')
-const SetMessages = ()=>{
-    textbox.innerHTML = ""
-    const chits = Messages()
+
+var reply_to_id, type ="send",
+url ,
+inputField = document.querySelector('#sendTo'),
+sendButton = document.querySelector('.chit_send_button'),
+inputFieldDev = document.querySelector(".input_country") ;
+
+
+const SetMessages = async ()=>{
     
-    chits.forEach(message=>{
+    new_messages= await  Messages()
+    result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id))
+    result.forEach(message=>{
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
         const header = document.createElement('div')
@@ -22,34 +27,39 @@ const SetMessages = ()=>{
         const button_wrapper = document.createElement('div')
         button_wrapper.classList.add('reply_button')
         const replyButton = document.createElement('button') 
-        
+        const replyHeader = document.createElement('div')
+        replyHeader.classList.add('reply')
         content.textContent = message.chit
         header.textContent = "From: " + message.chit_from.name + " <" + message.chit_from.country_id + ">"
         
         if(message.reply_to_country)
         {
-            const replyHeader = document.createElement('div')
-            replyHeader.classList.add('reply')
             replyHeader.textContent = "Reply from " + message.chit_from.name + " to " + message.reply_to_country +"'s " + " message"
             wrapper.appendChild(replyHeader)
         }
         replyButton.textContent = "Reply"
         replyButton.addEventListener('click',()=>{
+            replyButton.classList.add('clicked')
+            inputFieldDev.classList.add('clicked')
+            inputField.classList.add('clicked')
             inputField.value = message.chit_from.country_id 
             type = "reply"
            reply_to_id=message.id
-           console.log(message)
-           
-            
+           setTimeout(()=>{
+           replyButton.classList.remove('clicked')
+           inputFieldDev.classList.remove('clicked')
+           inputField.classList.remove('clicked')
+           },2000)
+              
         })
         button_wrapper.appendChild(replyButton)
         wrapper.appendChild(header)
         wrapper.appendChild(content)
+        wrapper.setAttribute("id",`${message.id}`)
         wrapper.appendChild(button_wrapper)
         textbox.appendChild(wrapper)
     })
-
-  // textbox.scrollTop = textbox.scrollHeight - textbox.clientHeight;
+     old_messages=new_messages ;
 }
 
 
@@ -62,10 +72,11 @@ form.addEventListener('submit',(e)=>{
     sendButton.disabled=true 
     
     let formData = new FormData(form) 
-    var send_data 
+    sendButton.classList.add('clicked')
+   
     
     if(type=="send"){
-        url ='/chits/deligate/'
+        url ='/chits/deligate'
         send_data =JSON.stringify({
             "chit_to":formData.getAll("country_name")[0],
             "content" : formData.getAll("chit")[0]
@@ -95,8 +106,10 @@ form.addEventListener('submit',(e)=>{
     })
     .catch(error=>errorMessage=error.message)
     setTimeout(()=>{
-        sendButton.disabled=false 
-    },3000)
+        sendButton.disabled=false
+        sendButton.classList.remove('clicked') 
+      
+    },2000)
 })
 
 setInterval(SetMessages, 5000)
