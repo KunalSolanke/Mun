@@ -1,63 +1,44 @@
-Workflow of then MUN project
+# DebateNation
 
-Models Created
-
-1.) User model which inherits from AbstractUSer model--->There is a role field which allows multiple types of users
-
-2.) There is a country model which has name, id and flag
-
-3.) Team model ==> leader has onetoone relation with User
-
-4.) Deligate profile,Profile==> user ->OneToOne  
+<img src="./static/images/logo.png" style="width:200px"><br>
 
 
-In Chits
 
-There is a Chit model for storing the chits.
-
- Every chit has a status field
-	0->Disapproved
-	1->Checking
-	2->Approved
-	3->Ratified
-chit field stores the content of message
-chit_from,chit_to have Country as a foreign key
-there is another field i.e reply_to_chit which has onetoone relation with itself
+IITG MUN COVID19 HACKATHON PLATFORM<br>
+<i>Online debate panel</i>
 
 
-Now come to Working of the project
+# Pages
 
-There will be 3 different kind of index pages depending upon the user.
-
-First of all There will be a home page of the site which will have a login form.
-That is described by the logon view.
-When user clicks Log In. A post request is sent.
-We will store the role of user in a variable 
-Based on the role An index page will be shown to each user.
+Login Page
 
 
-To each user chits will be displayed depending upon the status of the chits
+<img src="./ss/login.png">
+<br><br>
 
-Workflow of messaging:
-
-When a user sends a message. We will send an ajax request to an end Point having current url. That will create a chit 
-with status = 1. Since we will be fetching chits from database every minute. Chit will reach to moderator because status=1
-
-Now moderator will click Approve or Disapprove.
-
-If moderator approves the the we will update the chit status to 2.
-since ajax is sending request to server to fetch the chits.
-Now chit will be reached to judge and will be removed from admin.
-
-Same process will be repeated for judge.
+Deligate Page
 
 
-Now comes handling replies.
+<img src="./ss/deligate_page.png">
 
 
-When a user will be replying we will update the chit by adding content to reply_to field.
-now. We will first check if there already has been a reply to chit whose status is 3.
+Judge/Moderator Page
 
-of that is the case furthur reply is note allowed.
 
-else we will update the chits status.
+<img src="./ss/jude_page.png">
+
+
+
+# Working 
+- Deligates participate in teams of 5
+- Each deligate represent a country
+ - Registered deligates can send a chit or reply to a chit by other deligates .
+- The chit is then sent to moderator who can approve or disapprove it.
+- Which is then forworded to judge to either ratify or reject
+- if judge ratified the chit its sent back to deligates
+And the debate goes on.
+
+## TechStack
+- Django
+- Rest framework is used to fetch chits on deligate ,judge and moderator's side in regular interval
+- Vanilla js(ajax)
