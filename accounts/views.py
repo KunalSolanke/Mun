@@ -16,8 +16,8 @@ def login(request) :
         password = request.POST['password']
         user = authenticate(username = username,password=password)
         if user is not None :
-            if not  request.user :
-               login(request) 
+            if not request.user :
+                   login(request) 
             messages.success(request,"Logged in successfully")
             role = user.role 
             if role =="DT" :
@@ -27,7 +27,7 @@ def login(request) :
             elif role =="JD" :
                 return redirect('chits:judge_index')
         else :
-             messages.error(request,"Login Failed")
+             messages.error(request,"Invalid credentials")
              return render(request,"accounts/login.html")
     else :
         return render(request,"accounts/login.html")

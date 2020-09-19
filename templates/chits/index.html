@@ -6,7 +6,7 @@
             <div class="send_area">
                 <form>
                     <div style="display:none">
-                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" className="csrf"/>
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" class="csrf"/>
                     </div>
                 <div class="input_country">
                     <label for="">To :</label>
@@ -86,6 +86,7 @@
                 <div>Country</div>
                 <div>Id</div>
             </div>
+
             {% for country in countries %}
             <div class="country">
                 <div>{{country.name}}</div>

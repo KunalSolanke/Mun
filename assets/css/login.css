@@ -1,0 +1,84 @@
+*{
+    padding:0 ;
+    margin : 0 ;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+html{
+    overflow-x: hidden  ;
+}
+
+
+section.main__section{
+    min-height : 100vh ;
+    display : flex ;
+
+}
+
+.main__section .banner__wrapper{
+    flex : 0.7 ;
+    height: 100% ;
+    background-image : url('/static/images/banner.png') ;
+    background-size: cover;
+}
+
+.main__section .banner__wrapper .banner{
+    background-image: url('/static/images/gradient.png');
+    opacity: 80%;
+    background-size: cover;
+    height: 100%;
+    width:100% ;
+}
+
+.main__section .banner__wrapper .banner__wrapper >div{
+    height :100% ;
+    display: flex ;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.main__section .login{
+    height:100% ;
+    flex:0.3 ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:#2D2D2D;
+}
+
+.main__section .login .logo__wrapper{
+    flex:0.4 ;
+    display: grid ;
+    place-items: center;
+}
+
+.main__section .login .form__wrapper{
+    width : 100% ;
+
+}
+.main__section .login form {
+    width : 100% ;
+}
+
+.main__section .login form input{
+    width :100% ;
+    border : none ;
+    outline : none ;
+    padding : 10px 20px ;
+    border-radius: 10px;
+    background-color : white ;
+}
+.main__section .login form .form__submit {
+    width : 100% ;
+    display: grid;
+    place-items: center;
+}
+
+.main__section .login button {
+    background :transparent ;
+    border : 2px solid white ;
+    padding: 10px 20px ;
+    outline : none ;
+}

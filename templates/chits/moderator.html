@@ -2,31 +2,63 @@
 {% load static %}
 {% block content %}
     <section class="message_area">
-        <div class="chit_send">
-            <div class="send_area">
-                <form>
-                    <div style="display:none">
-                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" class="csrf" />
-                    </div>
-                <div class="input_country">
-                    <label for="">To :</label>
-                    <span >
-                    <input type="text" id="sendTo" name="country_name">
-                    </span>
-                </div>
-                <div class="message">
-                    <textarea  autocomplete="false"  spellcheck="false"  cols="12"  aria-expanded="false" name="chit">
+        <style>
+            .message_area{
+                align-items: flex-start!important;
+                justify-content: flex-start!important;
+            }
+            .chit_area{
+                justify-self: start;
+                margin-left:5rem!important ;
+               
+                flex:0.53!important;
+            }
 
-                    </textarea>
-                </div>
-                <div class="submit">
-                            <button type ="submit" class="chit_send_button">Send</button>
-                </div>
-            </form>
-            </div>
-        </div>
+            @media screen and (max-width:1200px) {
+             .chit_area{
+               
+               flex:.65 !important;
+               margin-left:1rem!important ;
+           }
+        }
+         
+           @media screen and (max-width:900px) {
+             .chit_area{
+               
+               flex:.8 !important;
+               margin-left:1rem!important ;
+           }
+           @media screen and (max-width:700px) {
+             .chit_area{
+                 height: 90vh!important;
+               
+               flex:1 !important;
+               margin-left:1rem!important ;
+               
+ 
+           }
+        }
+           @media screen and (max-width:600px) {
+             .chit_area{
+                 height: 90vh!important;
+               
+               flex:1 !important;
+               margin-left:0rem!important ;
+               
+ 
+           }
+         }
+                
+            }
+            .main_area .message_area{
+               margin-bottom: 2rem;
+           }
+        </style>
         <div class="chit_area">
             <div class="chits_box">
+                <div style="display:none">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" class="csrf"/>
+                </div>
                 <!-- <div class="single_chit">
                     <div class="from">
                             From : India < india@iitgmun >
@@ -80,29 +112,7 @@
 
     </section>
 
-    <section class="country_area">
-        <div class="countries">
-            <div class="head">
-                <div>Country</div>
-                <div>Id</div>
-            </div>
-            {% for country in countries %}
-            <div class="country">
-                <div>{{country.name}}</div>
-                <div>{{country.country_id }}</div>
-            </div>
-            {% endfor %}
-
-            
-        </div>
-        <div class="debate_heads">
-            <div class="head">
-                        Heads
-            </div>
-
-        </div>
-
-    </section>
+    
 {% endblock %}
 
 

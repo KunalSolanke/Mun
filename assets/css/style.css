@@ -1,0 +1,866 @@
+*{
+    padding:0 ;
+    margin : 0 ;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+html{
+    overflow-x: hidden  ;
+}
+
+body{
+    font-size:10px ;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:300 ;
+    line-height: 20px;
+    overflow: hidden;
+}
+.main_div{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    transition: all .5s ease-in-out;
+}
+
+.main_div .sidebar{
+    min-width :150px !important ;
+    border:1.2px solid black ;
+    overflow: hidden;
+   
+}
+
+
+.main_div .sidebar .flag {
+    padding : 1rem ;
+}
+.main_div .sidebar .flag >div{
+    width :100px ;
+    height : 100px ;
+    margin: 1rem auto ;
+    background-color: gray;
+    text-align: center;
+    color : white ;
+    
+    font-size: 1.5rem;
+    font-weight: lighter;
+    padding : 2.2rem 1rem ;
+
+}
+
+
+.main_div .sidebar ul{
+    
+    list-style-type: none;
+    padding: .5rem 1rem;
+   
+}
+.main_div .sidebar ul li {
+    color : gray ;
+     margin-top:.5rem;
+}
+.main_div .sidebar ul li a {
+    text-decoration: none;
+   
+    color :black 
+    ;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.main_div .main_area{
+    flex-grow: 1;
+    transition: all .5s;
+}
+
+.main_area header {
+   margin-bottom: 1rem;
+}
+.main_area header nav{
+    background-color: rgba(15, 13, 13, 0.932);
+    color :white ;
+    display : flex ;
+    padding :1.3rem 1.6rem ;
+    position :relative ;
+    
+}
+
+nav .nav__toggle{
+   position:absolute ;
+   top:50% ;
+   opacity : 0 ;
+   transform: translateY(-50%);
+   text-align: center;
+    z-index: 1000000000000 ;
+    cursor: pointer;
+    padding :5px ;
+}
+nav .nav__toggle div{
+    width:20px ;
+    display: block;
+    background-color: white ;
+    height :2.8px ;
+    margin-bottom: 3px;
+    border-radius: 10px;
+}
+nav .nav__toggle.active .line1{
+    transform: rotateZ(45deg) translateY(8px);
+    
+    width :20px
+}
+nav .nav__toggle.active .line2{
+    transform: translateX(-100%);
+   
+    opacity : 0 ;
+}
+nav .nav__toggle.active .line3{
+    transform: rotateZ(-45deg) translateY(-8px);
+    
+   
+}
+nav .nav__toggle .line1{
+    width: 15px ;
+    transition: all .3s ease-in;
+}
+nav .nav__toggle .line2{
+    transition: all .3s ease-in;
+}
+nav .nav__toggle .line3{
+    transition: all .3s ease-in;
+}
+.main_area header nav .logo{
+  flex:1 ;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.main_area header nav .logout ul{
+    list-style-type: none;
+    font-size: .8rem;
+    font-weight: 100;
+}
+
+
+.main_area header nav .logout ul li a {
+    text-decoration: none;
+    color : inherit ;
+    font-size: .9rem;
+}
+
+.main_area .message_area{
+    position: relative;
+    display : flex ;
+    height: 90vh;
+   
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-right: 5rem;
+    margin-bottom: 10rem;
+}
+
+.main_area .message_area .chit_send{
+    flex: 1;
+    padding :1rem 3rem 1rem 5rem;
+    
+    height: 100%;
+}
+.main_area .message_area .chit_send .send_area{
+    width :90% ;
+    height : 90% ;
+  
+    
+}
+
+.main_area .message_area .chit_send .input_country{
+    border: 1.2px solid black;
+    border-bottom: none;
+    padding :0.5rem 1rem ;
+}
+.main_area .message_area .chit_send .input_country.clicked,.main_area .message_area .chit_send input.clicked{
+    background-color: rgba(181, 182, 145, 0.123);
+}
+
+.main_area .message_area .chit_send input{
+   padding :  0.2rem 0.5rem;
+   width: 80% ;
+   outline :none ;
+   border : none ;
+   background-color: none ;
+}
+.main_area .message_area .chit_send label {
+    font-size: 1rem;
+}
+
+.main_area .message_area  form{
+    height : 100% ;
+
+}
+.main_area .message_area .chit_send .message{
+    height : 80% ;
+    border : 1.2px solid black ;
+}
+.main_area .message_area .chit_send textarea{
+    outline: none ;
+    border : none ;
+    width : 100% ;
+    height : 100%;
+    padding: .5rem 1rem ;
+    font-size: 1rem;
+    color :gray;
+    font-weight: lighter;
+    resize: none;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scrollbar-color :  rgb(245, 245, 232) rgb(225, 225, 236) ;
+
+
+}
+
+.main_area .message_area .chit_send .submit{
+    text-align: right;
+    margin-top: 1rem;
+}
+
+.main_area .message_area button{
+    background: none;
+    box-shadow: none;
+    background-color: rgba(10, 7, 7, 0.89);
+    border : none ;
+    margin-right : .5rem ;
+
+
+    outline : none ;
+    cursor: pointer;
+    border-radius: .8rem;
+    padding : .32rem 1.8rem ;
+    color :white ;
+    transition: all .2s ;
+    border : 2px solid black ;
+  
+  
+}
+.main_area .message_area button.clicked{
+    background-color: white!important;
+    color :black!important ;
+}
+
+
+
+.main_area .chit_area{
+    flex:1;
+    padding-right: 5rem ;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+   padding-left : 0rem ;
+    height: 100%;
+}
+
+
+.main_area .chit_area .chits_box{
+    
+    height: 100% ;
+    width : 95% ;
+    border : 1px solid black ;
+    overflow :scroll ;
+    scrollbar-color: rgb(245, 245, 232) rgb(225, 225, 236);
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    
+}
+
+.main_area .chit_area .chits_box .reply_button{
+    text-align: right;
+
+}
+.main_area .chit_area .chits_box .reply_button.clicked{
+    background-color: white!important;
+}
+
+
+.main_area .chit_area .chits_box .single_chit{
+    font-size: .93rem;
+    background-color: #fff;
+    font-weight: lighter;
+    color : gray;
+    padding : .6rem 0.5rem ;
+    box-shadow: 10px 20px 50px  grey ;
+    line-height: 1.5rem;
+
+}
+.main_area .chit_area .chits_box .single_chit .from,.main_area .chit_area .chits_box .single_chit .reply{
+    margin-bottom: .6rem;
+}
+
+.main_area .chit_area .chits_box .single_chit .content{
+    margin-bottom: .3rem;
+
+}
+
+
+
+section.country_area{
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    display : flex ;
+    height: 90vh;
+    
+    justify-content: space-evenly;
+    align-items: center;
+    padding-right: 5rem;
+    overflow:visible;
+    flex-wrap:wrap ;
+}
+
+
+.country_area .countries{
+   border: 1px solid black;
+   flex:1 ;
+   
+   position: relative;
+   margin-left: 3rem;
+   height : 100% ;
+   overflow:scroll ;
+   scrollbar-color: rgb(245, 245, 232) rgb(225, 225, 236);
+   scrollbar-width: none;
+   scroll-behavior: smooth;
+}
+.country_area .debate_heads{
+    flex:1 ;
+    padding : 1rem 1rem;
+    height : 100% ;
+    border : 1px solid black ;
+    margin-left :3rem ;
+}
+
+.country_area .head{
+    display: flex ;
+    font-size: 1rem;
+    
+    padding :.9rem 1rem ;
+    position: relative ;
+    
+    
+    border-bottom : 1px solid black
+}
+.country_area .country{
+    display: flex ;
+    font-size: 1rem;
+    
+    padding :.7rem 1rem ;
+   
+    border-bottom : 1px solid black
+
+}
+.country_area .head >div{
+    flex: 1;
+}
+.country_area .head :last-child(){
+    flex:1 ;
+}
+
+.country_area .country >div{
+    flex: 1;
+}
+.country_area .country :last-child(){
+    flex:1 ;
+}
+
+.country_area .country{
+    cursor :pointer ;
+    transition: all .3s ease-in;
+}
+.country_area .country:hover{
+    cursor :pointer ;
+    background-color: rgba(0, 0, 0, 0.247);
+}
+.country_area  .added{
+    background-color: rgba(181, 182, 145, 0.247);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tablets */
+@media (max-width:1200px){
+  
+    
+   
+    
+    
+    
+    .main_div .sidebar .flag {
+        padding : .5rem !important ;
+    }
+    .main_div .sidebar .flag >div{
+        width :80px !important ;
+        height : 80px !important;
+        margin: .5rem auto !important ;
+        
+        
+        padding : 1.8rem 1rem ;
+    
+    }
+    .main_div .sidebar ul{
+        padding: 0rem 1rem;
+       
+    }
+    
+    .main_div .sidebar ul li a {
+      
+        font-size: .7rem;
+        font-weight: 400;
+    }
+    
+    
+    
+  
+    .main_area header nav{
+        
+        padding :1.1rem 1.6rem ;
+        
+    }
+    
+    
+   
+    
+    
+    .main_area .message_area{
+        
+        height: 90vh;
+       
+        
+        padding-right: 0rem !important;
+        margin-bottom: 4rem;
+    }
+    
+    .main_area .message_area .chit_send{
+       
+        padding :2rem !important;
+        /* //width : 100% ; */
+       
+    }
+    .main_area .message_area .chit_send .send_area{
+        
+        margin: 0rem auto;
+        
+    }
+    
+    .main_area .chit_area{
+        
+        padding-right: 1rem ;
+        
+        padding-left : 0rem ;
+        
+    }
+    
+    section.country_area{
+        
+       margin-bottom: 2rem;
+        height: 95vh;
+        padding-right: 1rem;
+       
+    }
+    
+    
+    .country_area .countries{
+      
+       margin-left: 1rem;
+       
+    }
+   
+    .country_area .head{
+        display: flex ;
+        font-size: .9rem;
+        
+        padding :.6rem 1rem ;
+        position: relative ;
+    }
+    .country_area .country{
+        display: flex ;
+        font-size: .9rem;
+        
+        padding :.6rem 1rem ;
+       
+    
+    }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tablets */
+@media (max-width:900px){
+  
+    
+   
+    .main_div .sidebar{
+        width :100px !important ;
+        
+    }
+    
+    
+    .main_div .sidebar .flag {
+        padding : .5rem !important ;
+    }
+    .main_div .sidebar .flag >div{
+        width :80px !important ;
+        height : 80px !important;
+        margin: .5rem auto !important ;
+        
+        
+        padding : 1.8rem 1rem ;
+    
+    }
+    .main_div .sidebar ul{
+        padding: 0rem 1rem;
+       
+    }
+    
+    .main_div .sidebar ul li a {
+      
+        font-size: .7rem;
+        font-weight: 400;
+    }
+    
+    
+    
+  
+    .main_area header nav{
+        
+        padding :1.1rem 1.6rem ;
+        
+    }
+
+    .main_area .message_area{
+        
+        height: 90vh;
+       max-height : 600px ;
+        
+        padding-right: 0rem !important;
+        margin-bottom: 4rem;
+    }
+    
+    .main_area .message_area .chit_send{
+       
+        padding :2rem !important;
+        /* //width : 100% ; */
+       
+    }
+    .main_area .message_area .chit_send .send_area{
+        
+        margin: 0rem auto;
+        
+    }
+    
+
+    .main_area .chit_area{
+        
+        padding-right: 1rem ;
+        
+        padding-left : 0rem ;
+        
+    }
+    
+    
+    
+        
+
+    section.country_area{
+        
+       margin-bottom: 2rem;
+        height: 95vh;
+        max-height: 600px;
+        padding-right: 1rem;
+       
+    }
+    
+    
+    .country_area .countries{
+      
+       margin-left: 1rem;
+       
+    }
+   
+    .country_area .head{
+        display: flex ;
+        font-size: .9rem;
+        
+        padding :.6rem 1rem ;
+        position: relative ;
+        
+        
+     
+    }
+    .country_area .country{
+        display: flex ;
+        font-size: .9rem;
+        
+        padding :.6rem 1rem ;
+       
+    
+    }
+  
+}
+
+
+
+
+
+
+
+ @media (min-width : 1024px){
+    .main_area .message_area{
+         
+       max-height : 700px ;
+           
+    }
+    
+  
+
+    section.country_area{
+        max-height: 700px;
+       
+    }
+    
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* mobile-screen */
+@media (max-width:550px){
+   
+    
+    .main_div{
+        display: flex;
+        flex-direction: row;
+       
+    }
+    .main_div .sidebar{
+       position: absolute;
+       bottom: 0%;
+       right:100% ;
+       top:0% ;
+       
+    }
+    
+    
+    .main_div .sidebar .flag {
+        padding : 1rem ;
+    }
+    .main_div .sidebar .flag >div{
+        width :100px ;
+        height : 100px ;
+        margin: 1rem auto ;
+        background-color: gray;
+        text-align: center;
+        color : white ;
+        
+        font-size: 1.5rem;
+        font-weight: lighter;
+        padding : 2.2rem 1rem ;
+    
+    }
+    .main_div .sidebar ul{
+        
+        list-style-type: none;
+        padding: .5rem 1rem;
+       
+    }
+    .main_div .sidebar ul li {
+        color : gray ;
+         margin-top:.5rem;
+    }
+    .main_div .sidebar ul li a {
+        text-decoration: none;
+       
+        color :black 
+        ;
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    
+    .main_div .main_area{
+        flex-grow: 1;
+    }
+    
+    .main_area header {
+       margin-bottom: 2rem;
+    }
+    .main_area header nav{
+        background-color: rgba(15, 13, 13, 0.932);
+        color :white ;
+        display : flex ;
+        padding :1.3rem 1.6rem ;
+        
+    }
+    
+    .main_area header nav .logo{
+      flex:1 ;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    
+    .main_area header nav .logout ul{
+        list-style-type: none;
+        font-size: .8rem;
+        font-weight: 100;
+    }
+    
+    
+    .main_area header nav .logout ul li a {
+        text-decoration: none;
+        color : inherit ;
+        font-size: .9rem;
+    }
+    
+    .main_area .message_area{
+        height: auto !important;;
+        padding-right: 0rem !important;
+        margin-bottom: 3rem !important;
+        flex-wrap:wrap-reverse ;
+        max-height: unset;
+        
+    }
+    
+    .main_area .message_area .chit_send{
+        flex-basis: 100% !important;
+        padding :2rem !important;
+        /* //width : 100% ; */
+        height: 80vh !important;
+    }
+    .main_area .message_area .chit_send .send_area{
+        width :100%!important ;
+       
+      
+        
+    }
+
+    .main_area .chit_area{
+        flex:1;
+        padding: 1rem 2rem !important ;
+        max-height: unset;
+        height: 100%;
+    }
+    
+    
+    .main_area .chit_area .chits_box{
+        max-height: 80vh !important;
+        
+        width : 100% !important;
+        
+        
+    }
+    
+    section.country_area{
+        margin-bottom: 2rem !important;
+        margin-top: 3rem !important;
+      
+        height: auto !important;
+       
+        padding-right: 0rem !important;
+        max-height: unset;
+        padding: 1rem 2rem !important;
+    }
+    
+    
+    .country_area .countries{
+       
+       flex-basis:100% !important ;
+       margin-left: 0rem !important;
+       max-height: 80vh !important;
+      
+    }
+    .country_area .debate_heads{
+        
+       min-height: 50vh;
+       max-height: 80vh;
+       
+        margin-left :0rem !important ;
+        margin-top: 3rem!important;
+    }
+    
+    .country_area .head{
+ 
+        font-size: .8rem !important;
+        
+        padding :.7rem 1rem !important ;
+        
+    }
+    .country_area .country{
+        display: flex ;
+        font-size: .8rem !important;
+        padding :.7rem 1rem !important;
+       
+    
+    }
+    nav .nav__toggle{
+        opacity : 0.8 ;
+    }
+    
+}
+

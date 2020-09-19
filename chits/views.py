@@ -12,7 +12,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
 import json
+from chits.decorators import user_check
 # Create your views here.
 
 
@@ -34,18 +36,20 @@ import json
 class DeligateIndex(LoginRequiredMixin,View) :
     template_name= "chits/index.html"
     login_url = '/accounts/login/'
+
+    
     
 
-
-    def get(self,request) :
+    @method_decorator(user_check)
+    def get(self,request,*args,**kwargs) :
         countries = Country.objects.all() 
         context ={
             'countries':countries
         }
         return render(request,self.template_name,context=context)
          
-
-    def post(self,request) :
+    @method_decorator(user_check)
+    def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         chit_to=Country.objects.get(country_id= request_data.get('chit_to'))
         chit_from=request.user.deligate_profile.country
@@ -75,8 +79,8 @@ class DeligateReply(LoginRequiredMixin,View) :
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
-
-    def post(self,request) :
+    @method_decorator(user_check)
+    def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         reply_to = request_data['reply_to']
         if Chit.objects.filter(reply_to_chit=int(reply_to),status = 3).exists() :
@@ -117,12 +121,12 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
-
-    def get(self,request) :
+    @method_decorator(user_check)
+    def get(self,request,*args,**kwargs) :
         return render(request,self.template_name)
 
-
-    def post(self,request) :
+    @method_decorator(user_check)
+    def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id)
@@ -157,8 +161,8 @@ class ModeratorIndexDisapprove(LoginRequiredMixin,View) :
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
 
-
-    def post(self,request) :
+    @method_decorator(user_check)
+    def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id) 
@@ -190,13 +194,13 @@ class JudgeIndexRatify(LoginRequiredMixin,View) :
 
 
 
-
-    def get(self,request) :
+    @method_decorator(user_check)
+    def get(self,request,*args,**kwargs) :
         return render(request,self.template_name)
 
-
-
-    def post(self,request) :
+  
+    @method_decorator(user_check)
+    def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         chit_id = request_data['chit_id']
         chit = get_object_or_404(Chit,pk=chit_id) 
@@ -236,8 +240,8 @@ class JudgeIndexReject(LoginRequiredMixin,View) :
     login_url = '/accounts/login/'
 
 
-
-    def post(self,request) :
+    @method_decorator(user_check)
+    def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id) 
