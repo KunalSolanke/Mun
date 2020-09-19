@@ -1,6 +1,6 @@
 # DebateNation
 
-<img src="./static/images/logo.png" style="width:200px"><br>
+<img src="./static/images/logo.png" style="width:200px;background:gray;padding:10px"><br>
 
 
 
@@ -13,7 +13,7 @@ IITG MUN COVID19 HACKATHON PLATFORM<br>
 Login Page
 
 
-<img src="./ss/login.png">
+<img src="./ss/login.png" >
 <br><br>
 
 Deligate Page
