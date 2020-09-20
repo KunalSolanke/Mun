@@ -1,6 +1,6 @@
 # DebateNation
 
-<img src="./static/images/logo.png" style="width:200px;background:gray;padding:10px"><br>
+<img src="./static/images/logo.png" style="width:200px;background:#2d2d2d;padding:10px"><br>
 
 
 
