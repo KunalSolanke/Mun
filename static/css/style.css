@@ -749,7 +749,63 @@ section.country_area{
 
 
 
-
+@media (max-width:740px){
+    .main_div .sidebar{
+        position: absolute;
+        bottom: 0%;
+        right:100% ;
+        top:0% ;
+        min-width: 200px;
+        
+     }
+     
+     
+     .main_div .sidebar .flag {
+         padding : 1rem ;
+     }
+     .main_div .sidebar .flag >div{
+        
+         margin: 1rem auto ;
+        
+         text-align: center;
+         color : white ;
+         
+         font-size: 1.5rem;
+         font-weight: lighter;
+         padding : 2.2rem 1rem ;
+     
+     }
+     .main_div .sidebar .flag >div >img
+     {
+         width: 100px;
+     }
+     .main_div .sidebar ul{
+         
+         list-style-type: none;
+         padding: .5rem 1rem;
+        
+     }
+     .main_div .sidebar ul li {
+         color:white ;
+          margin-top:.5rem;
+     }
+     .main_div .sidebar ul li a {
+         text-decoration: none;
+        
+         color :white ; 
+         
+         font-size: .8rem;
+         font-weight: 300;
+     }
+     nav .nav__toggle{
+        opacity : 0.8 ;
+    }
+    header nav .logo{
+        font-size: .5rem;
+        font-weight: 500;
+    }
+    
+}
 
 
 
