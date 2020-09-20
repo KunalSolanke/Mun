@@ -3,14 +3,16 @@ Success = "",
 errorMessage = "",
 form = document.querySelector("form"),
 old_messages=[],
-result =[] ;
+result =[] ,text;
 
 
 var reply_to_id, type ="send",
 url ,
+
 inputField = document.querySelector('#sendTo'),
 sendButton = document.querySelector('.chit_send_button'),
 inputFieldDev = document.querySelector(".input_country") ;
+text = document.querySelector(".message textarea")
 
 
 const SetMessages = async ()=>{
@@ -103,11 +105,15 @@ form.addEventListener('submit',(e)=>{
     .then(data=>{
         Success=data.message
         type ="send"
+        
     })
     .catch(error=>errorMessage=error.message)
     setTimeout(()=>{
         sendButton.disabled=false
-        sendButton.classList.remove('clicked') 
+        sendButton.classList.remove('clicked')
+        console.log(text) 
+        text.value =""
+        
       
     },2000)
 })

@@ -130,7 +130,8 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
         request_data = json.loads(request.body)
         chit_id = request_data['chit_id']
         chit = Chit.objects.get(pk=chit_id)
-        if chit.reply_to_chit and chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
+        print(chit.reply_to_chit)
+        if chit.reply_to_chit and Chit.objects.filter(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
             return HttpResponse(json.dumps({
             "message":"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to)
@@ -205,7 +206,7 @@ class JudgeIndexRatify(LoginRequiredMixin,View) :
         chit_id = request_data['chit_id']
         chit = get_object_or_404(Chit,pk=chit_id) 
 
-        if chit.reply_to_chit and Chit.objects.get(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
+        if chit.reply_to_chit and Chit.objects.filter(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} .You have already ratifiied a reply to the same .".format(reply_to))
             return HttpResponse(json.dumps({
             "message":"This is a reply chit to chit_id {} .You have already ratifiied a reply to the same .".format(reply_to)
