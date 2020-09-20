@@ -1,41 +1,76 @@
 from django.shortcuts import render,redirect
 from accounts.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # from chits.models import *
 # from django.http import HttpResponse
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import AnonymousUser
 # Create your views here.
 
-def login(request) :
-    if request.method == "POST" :
-        
+def user_redirect(request,user) :
+    role = user.role 
+            
+    if role =="DT" :
+        return redirect('chits:deligate_index')
+    elif role=="MD" :
+        return redirect('chits:moderator_index')
+    elif role =="JD" :
+        return redirect('chits:judge_index') 
+    else :
+        messages.error(request,"Invalid credentials")
+        return render(request,"accounts/login.html")
+
+
+def user_login(request) :
+    if request.method == "POST" :    
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username = username,password=password)
-        if user is not None :
-            if not request.user :
-                   login(request) 
-            messages.success(request,"Logged in successfully")
+       
+
+
+        if user is not None :  
+            login(request,user)       
             role = user.role 
+            
             if role =="DT" :
                 return redirect('chits:deligate_index')
             elif role=="MD" :
                 return redirect('chits:moderator_index')
             elif role =="JD" :
-                return redirect('chits:judge_index')
+                return redirect('chits:judge_index') 
+            else :
+                messages.error(request,"Invalid credentials")
+                return render(request,"accounts/login.html")        
         else :
              messages.error(request,"Invalid credentials")
              return render(request,"accounts/login.html")
+
+
     else :
-        return render(request,"accounts/login.html")
+        if request.user and not isinstance(request.user ,AnonymousUser):
+            role = request.user.role 
+            if role =="DT" :
+                return redirect('chits:deligate_index')
+            elif role=="MD" :
+                return redirect('chits:moderator_index')
+            elif role =="JD" :
+                return redirect('chits:judge_index') 
+            else :
+                messages.error(request,"Invalid credentials")
+                return render(request,"accounts/login.html")
+           
+        else :
+          return render(request,"accounts/login.html")
 
 
 class Logout(LoginRequiredMixin,View):
 
     def get(self,request):
+        logout(request)
         return redirect('accounts:login')
 
 logout_user = Logout.as_view()
