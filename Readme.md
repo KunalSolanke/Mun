@@ -1,6 +1,7 @@
 # DebateNation
-
+<div style="background:#2d2d2d">
 <img src="./static/images/logo.png" style="width:200px;background:#2d2d2d;padding:10px"><br>
+ </div>
 
 
 
