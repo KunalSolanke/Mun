@@ -233,6 +233,9 @@ nav .nav__toggle .line3{
 
 
 }
+.main_area .message_area .chit_send textarea::-webkit-scrollbar {
+    display: none;
+  }
 
 .main_area .message_area .chit_send .submit{
     text-align: right;
@@ -287,7 +290,15 @@ nav .nav__toggle .line3{
     scroll-behavior: smooth;
     border-radius : 3px ;
     
+    
 }
+
+
+.main_area .chit_area .chits_box::-webkit-scrollbar {
+  display: none;
+}
+ 
+
 
 .main_area .chit_area .chits_box .reply_button{
     text-align: right;
@@ -356,6 +367,10 @@ section.country_area{
    scrollbar-width: none;
    scroll-behavior: smooth;
 }
+
+.country_area .countries::-webkit-scrollbar {
+    display: none;
+  }
 .country_area .debate_heads{
     flex:1 ;
     padding : 1rem 1rem;
@@ -363,7 +378,14 @@ section.country_area{
     border : 1px solid white ;
     background-color: white;
     margin-left :3rem ;
+    scrollbar-color: rgb(245, 245, 232) rgb(225, 225, 236);
+   scrollbar-width: none;
+   scroll-behavior: smooth;
 }
+
+.country_area .debate_heads::-webkit-scrollbar {
+    display: none;
+  }
 
 .country_area .head{
     display: flex ;

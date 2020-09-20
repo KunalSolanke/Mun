@@ -12,18 +12,6 @@ from django.contrib.auth.models import AnonymousUser
 import pandas as pd
 # Create your views here.
 
-def user_redirect(request,user) :
-    role = user.role 
-            
-    if role =="DT" :
-        return redirect('chits:deligate_index')
-    elif role=="MD" :
-        return redirect('chits:moderator_index')
-    elif role =="JD" :
-        return redirect('chits:judge_index') 
-    else :
-        messages.error(request,"Invalid credentials")
-        return render(request,"accounts/login.html")
 
 
 def user_login(request) :

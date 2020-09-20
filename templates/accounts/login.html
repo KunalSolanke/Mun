@@ -41,11 +41,11 @@
           {% csrf_token %}
           <div class="form__group">
             <label for="username">Username</label><br/>
-            <input name="username" type="text">
+            <input name="username" type="text" autocomplete="off" aria-autocomplete="none">
           </div>
           <div class="form__group">
-            <label for="password">Password</label><br/>
-            <input name="password" type="password">
+            <label for="password" aria-autocomplete="none">Password</label><br/>
+            <input name="password" type="password" aria-autocomplete="none" autocomplete="off" >
           </div>
           <div class="form__submit">
             <button type="submit">Login</button>
