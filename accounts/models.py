@@ -18,7 +18,7 @@ class User(AbstractUser) :
 
         
     username = models.CharField(max_length=255,unique=True) 
-    email =  models.EmailField(unique=True)
+    email =  models.EmailField(blank=True)
     role = models.CharField(max_length=30,
     choices=Role.choices,
     blank=True)
@@ -45,10 +45,10 @@ class Team(models.Model) :
 
 class DeligateProfile(models.Model) :
     user= models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='deligate_profile')
-    team = models.ForeignKey(Team,related_name='deligates',on_delete=models.CASCADE)
+    team = models.ForeignKey(Team,related_name='deligates',on_delete=models.CASCADE,null=True)
     country = models.OneToOneField(Country,related_name='deligate',on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255,default="")
+    last_name = models.CharField(max_length=255,default="")
     contact = models.IntegerField(blank=True,null=True)
 
 
@@ -76,8 +76,8 @@ def update_profile(sender,instance,created,**kwargs) :
 
 class Profile(models.Model) :
     user= models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
-    first_name = models.CharField(max_length=255)
-    last_name= models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255,default="")
+    last_name= models.CharField(max_length=255,default="")
     contact = models.IntegerField(blank=True,null=True)
 
     class Meta :

@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect
 from accounts.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-# from chits.models import *
-# from django.http import HttpResponse
+from chits.models import *
+from django.http import HttpResponse
+from accounts.models import *
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import AnonymousUser
+import pandas as pd
 # Create your views here.
 
 def user_redirect(request,user) :
@@ -75,24 +77,26 @@ class Logout(LoginRequiredMixin,View):
 
 logout_user = Logout.as_view()
 
-def Update(request):
-    username='daksh'
-    password='passworddaksh'
 
-    for i in range(10):
-        user = User.objects.get(username=username+str(i+2),password=password+str(i+2))
-        user.role = 'DT'
-        user.save()
-    return HttpResponse("Users updated successfully!")
 
-def Entry(request):
-    username='daksh'
-    password='passworddaksh'
+
+def createUsers(request) :
+    data = pd.read_csv('http://127.0.0.1:8000/static/data.csv')
+
+    for i in range(len(data)) :
+        country = data.iloc[i,0]
+        username= data.iloc[i,1]
+        password = data.iloc[i,2]
+        c= Country.objects.create(name=country,country_id=username)
+        u = User.objects.create(username=username,role="deligate")
+        u.set_password(password)
+        p =DeligateProfile.objects.create(user=u,country=c)
+        u.save()
+        c.save()
+        p.save()
     
-    for i in range(10):
-        User.objects.create(username=username+str(i+2),password=password+str(i+2),role='DT')
 
-    return HttpResponse("Users Created")
+    return HttpResponse("data added")
 
 
 
