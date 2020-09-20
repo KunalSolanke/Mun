@@ -88,7 +88,7 @@ def createUsers(request) :
         username= data.iloc[i,1]
         password = data.iloc[i,2]
         c= Country.objects.create(name=country,country_id=username)
-        u = User.objects.create(username=username,role="deligate")
+        u = User.objects.create(username=username,role="DT")
         u.set_password(password)
         p =DeligateProfile.objects.create(user=u,country=c)
         u.save()
