@@ -30,6 +30,9 @@ class Country(models.Model) :
     name = models.CharField(max_length=255) 
     country_id = models.CharField(max_length=255)
 
+    class Meta :
+        ordering =['name']
+
 
 class Team(models.Model) :
     name = models.CharField(max_length=255,blank=True)

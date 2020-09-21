@@ -42,7 +42,7 @@ class DeligateIndex(LoginRequiredMixin,View) :
 
     @method_decorator(user_check)
     def get(self,request,*args,**kwargs) :
-        countries = Country.objects.all() 
+        countries = Country.objects.all().exclude(name=request.user.deligate_profile.country.name)
         context ={
             'countries':countries
         }
@@ -86,6 +86,7 @@ class DeligateReply(LoginRequiredMixin,View) :
     def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         reply_to = request_data['reply_to']
+        
         if Chit.objects.filter(reply_to_chit=int(reply_to),status = 3).exists() :
             # messages.error(request,"This chit have already been replied to.Please wait for the reply to show up or refresh the page")
             return HttpResponse(json.dumps({
@@ -143,7 +144,7 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
         if chit.reply_to_chit and Chit.objects.filter(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
             return HttpResponse(json.dumps({
-            "message":"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to)
+            "message":"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(chit.reply_to_chit)
             }),content_type="application/json")
 
         chit.status =2 
