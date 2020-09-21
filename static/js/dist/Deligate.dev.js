@@ -119,6 +119,7 @@ form.addEventListener('submit', function (e) {
   });
   setTimeout(function () {
     sendButton.disabled = false;
+    text.disabled = false;
     sendButton.classList.remove('clicked');
     console.log(text);
     text.value = "";

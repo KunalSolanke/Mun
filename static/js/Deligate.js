@@ -73,6 +73,7 @@ form.addEventListener('submit',(e)=>{
     e.preventDefault() ;
     sendButton.disabled=true 
     
+    
     let formData = new FormData(form) 
     sendButton.classList.add('clicked')
    
@@ -110,6 +111,7 @@ form.addEventListener('submit',(e)=>{
     .catch(error=>errorMessage=error.message)
     setTimeout(()=>{
         sendButton.disabled=false
+        text.disabled= false
         sendButton.classList.remove('clicked')
         console.log(text) 
         text.value =""

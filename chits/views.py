@@ -83,6 +83,7 @@ class DeligateReply(LoginRequiredMixin,View) :
     def post(self,request,*args,**kwargs) :
         request_data = json.loads(request.body)
         reply_to = request_data['reply_to']
+        
         if Chit.objects.filter(reply_to_chit=int(reply_to),status = 3).exists() :
             # messages.error(request,"This chit have already been replied to.Please wait for the reply to show up or refresh the page")
             return HttpResponse(json.dumps({
@@ -96,6 +97,7 @@ class DeligateReply(LoginRequiredMixin,View) :
         ,chit=chit_content,status =1,reply_to_chit=reply_to_chit)
 
         chit.save()
+        
         # messages.success(request,"Reply to chit {} sent to moderator".format(replt_to))
 
         return HttpResponse(json.dumps({
