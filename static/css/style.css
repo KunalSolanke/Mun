@@ -25,6 +25,7 @@ body{
 }
 
 .main_div .sidebar{
+    position: relative;
    
     min-width: 220px ;
     border:1.2px solid black ;
@@ -71,6 +72,16 @@ body{
     ;
     font-size: 1rem;
     font-weight: 300;
+}
+
+.main_div .sidebar .contact__text {
+    position : absolute;
+    bottom :10px ;
+    text-align: center;
+    left: 0;
+    right: 0;
+    font-size: 0.7rem;
+    
 }
 
 .main_div .main_area{
@@ -817,7 +828,7 @@ section.country_area{
 
 
 /* mobile-screen */
-@media (max-width:580px){
+@media (max-width:590px){
 
 
    

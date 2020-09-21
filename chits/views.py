@@ -136,7 +136,7 @@ class ModeratorIndexApprove(LoginRequiredMixin,View) :
         if chit.reply_to_chit and Chit.objects.filter(reply_to_chit=chit.reply_to_chit,status = 3).exists() :
             # messages.error(request,"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to))
             return HttpResponse(json.dumps({
-            "message":"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(reply_to)
+            "message":"This is a reply chit to chit_id {} ,for which already a reply has been ratified by Judge .".format(chit.reply_to_chit)
             }),content_type="application/json")
 
         chit.status =2 
