@@ -54,10 +54,13 @@ class DeligateIndex(LoginRequiredMixin,View) :
         chit_to=Country.objects.get(country_id= request_data.get('chit_to'))
         chit_from=request.user.deligate_profile.country
         chit_content =request_data['content']
-        chit = Chit.objects.create(chit_from = chit_from,chit_to=chit_to
-        ,chit=chit_content,status =1)
-        chit.save()
-        return  HttpResponse(json.dumps({"message":"Chit sent to Moderator for checking","id":chit.id}),content_type="application/json")
+        if(chit_to!=chit_from):
+            chit = Chit.objects.create(chit_from = chit_from,chit_to=chit_to
+            ,chit=chit_content,status =1)
+            chit.save()
+            return  HttpResponse(json.dumps({"message":"Chit sent to Moderator for checking","id":chit.id}),content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({"message":"Can not send chit to yourself","id":chit.id}),content_type="application/json")
 
 deligate_index = DeligateIndex.as_view()
 
@@ -92,16 +95,22 @@ class DeligateReply(LoginRequiredMixin,View) :
         chit_to=Country.objects.get(country_id= request_data['chit_to'])
         reply_to_chit = Chit.objects.get(pk=int(reply_to))
         chit_content =request_data['content']
-        chit = Chit.objects.create(chit_from = request.user.deligate_profile.country ,chit_to=chit_to
-        ,chit=chit_content,status =1,reply_to_chit=reply_to_chit)
+        if(chit_to!=request.user.deligate_profile.country):
+            chit = Chit.objects.create(chit_from = request.user.deligate_profile.country ,chit_to=chit_to
+            ,chit=chit_content,status =1,reply_to_chit=reply_to_chit)
 
-        chit.save()
-        # messages.success(request,"Reply to chit {} sent to moderator".format(replt_to))
+            chit.save()
+            # messages.success(request,"Reply to chit {} sent to moderator".format(replt_to))
 
-        return HttpResponse(json.dumps({
-            "message":"Reply to chit {} sent to moderator".format(reply_to),
-            "id" : chit.id
-        }),content_type="application/json")
+            return HttpResponse(json.dumps({
+                "message":"Reply to chit {} sent to moderator".format(reply_to),
+                "id" : chit.id
+            }),content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({
+                "message":"Can not reply to yourself",
+                "id" : chit.id
+            }),content_type="application/json")
 
 deligate_reply = DeligateReply.as_view()       
         
