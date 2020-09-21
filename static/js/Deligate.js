@@ -51,7 +51,7 @@ const SetMessages = async ()=>{
            replyButton.classList.remove('clicked')
            inputFieldDev.classList.remove('clicked')
            inputField.classList.remove('clicked')
-           },2000)
+           },500)
               
         })
         button_wrapper.appendChild(replyButton)
@@ -115,7 +115,7 @@ form.addEventListener('submit',(e)=>{
         text.value =""
         
       
-    },2000)
+    },1000)
 })
 
 setInterval(SetMessages, 5000)

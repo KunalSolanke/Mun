@@ -189,12 +189,16 @@ nav .nav__toggle .line3{
     border-bottom: none;
     padding :0.5rem 1rem ;
     background-color: white;
+    transition: all .4s ease-in-out;
 }
 .main_area .message_area .chit_send .input_country.clicked,.main_area .message_area .chit_send input.clicked{
-    background-color: rgba(184, 184, 184, 0.116);
+    background-color: #4b4b4b ;
+    color : white ;
+    
 }
 
 .main_area .message_area .chit_send input{
+    transition: all .4s ease-in-out;
     background-color:white;
    padding :  0.2rem 0.5rem;
    width: 80% ;

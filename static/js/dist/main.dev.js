@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
       setTimeout(function () {
         inputFieldDev.classList.remove('clicked');
         inputField.classList.remove('clicked');
-      }, 1500);
+      }, 1200);
     });
   }); //nav_toggle
 
