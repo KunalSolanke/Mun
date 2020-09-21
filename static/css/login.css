@@ -46,7 +46,7 @@ section.main__section{
     z-index:1;
     background-image: url('/static/images/gradient.png');
     opacity: 80%;
-    background-position: 0% 20%;
+    background-position: 20% 40%;
 
 }
 
