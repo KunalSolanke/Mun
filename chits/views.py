@@ -42,7 +42,7 @@ class DeligateIndex(LoginRequiredMixin,View) :
 
     @method_decorator(user_check)
     def get(self,request,*args,**kwargs) :
-        countries = Country.objects.all() 
+        countries = Country.objects.all().exclude(name=request.user.deligate_profile.country.name)
         context ={
             'countries':countries
         }
