@@ -28,7 +28,7 @@ body{
     position: relative;
    
     min-width: 220px ;
-    border:1.2px solid black ;
+    
     overflow: hidden;
     background-image : url('/static/images/grad_strip.png') ;
     background-size: cover;
@@ -58,12 +58,13 @@ body{
 .main_div .sidebar ul{
     
     list-style-type: none;
-    padding: .5rem 1rem;
+    text-align: center;
    
 }
 .main_div .sidebar ul li {
     color : gray ;
-     margin-top:.5rem;
+    padding: .5rem 0rem;
+    background-color: #2d2d2d;
 }
 .main_div .sidebar ul li a {
     text-decoration: none;
@@ -332,6 +333,7 @@ nav .nav__toggle .line3{
 }
 .main_area .chit_area .chits_box .reply_button.clicked{
     background-color: white!important;
+    border: 1px solid #2d2d2d;
 }
 
 
@@ -410,7 +412,7 @@ section.country_area{
     position: relative ;
     
     
-    border-bottom : 1px solid black ;
+    border-bottom : 1px solid #2d2d2d ;
 }
 .country_area .country{
     display: flex ;
@@ -418,7 +420,7 @@ section.country_area{
     
     padding :.7rem 1rem ;
    
-    border-bottom : 1px solid black
+    border-bottom : 1px solid #2d2d2d ;
 
 }
 .country_area .head >div{
@@ -503,10 +505,7 @@ section.country_area{
     .main_div .sidebar .flag >div>img{
         width:100px ;
     }
-    .main_div .sidebar ul{
-        padding: 0rem 1rem;
-       
-    }
+    
     
     .main_div .sidebar ul li a {
       
@@ -641,10 +640,7 @@ section.country_area{
     .main_div .sidebar .flag >div>img{
         width : 60px ;
     }
-    .main_div .sidebar ul{
-        padding: 0rem 1rem;
-       
-    }
+    
     
     .main_div .sidebar ul li a {
       
@@ -797,12 +793,12 @@ section.country_area{
      .main_div .sidebar ul{
          
          list-style-type: none;
-         padding: .5rem 1rem;
+       
         
      }
      .main_div .sidebar ul li {
          color:white ;
-          margin-top:.5rem;
+         margin-top:.5rem;
      }
      .main_div .sidebar ul li a {
          text-decoration: none;
@@ -870,7 +866,7 @@ section.country_area{
     .main_div .sidebar ul{
         
         list-style-type: none;
-        padding: .5rem 1rem;
+        
        
     }
     .main_div .sidebar ul li {
