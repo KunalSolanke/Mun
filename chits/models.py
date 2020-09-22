@@ -21,8 +21,7 @@ class Chit(models.Model) :
     chit_from = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='sent_chits')
     chit_to = models.ForeignKey(Country,on_delete=models.CASCADE,related_name='received_chits',blank=True,null=True)
     status = models.IntegerField(choices=Status.choices)
-    timestamp = models.DateTimeField(auto_now=True,auto_now_add=False)
-    
+    timestamp = models.DateTimeField(auto_now=True,auto_now_add=False)  
     reply_to_chit = models.ForeignKey('self',null=True,blank=True,on_delete=models.CASCADE,related_name="reply")
 
 
