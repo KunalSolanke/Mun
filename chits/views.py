@@ -15,6 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 import json
 from chits.decorators import user_check
+from django.utils import timezone
 # Create your views here.
 
 
@@ -289,14 +290,23 @@ class ChitListView(ListAPIView) :
         
         queryset=[]
         if(self.request.user.is_authenticated) :
-            if user.role == "DT" :
-                queryset = Chit.objects.filter(status=3)
-            elif user.role == "MD" :
-                    queryset = Chit.objects.filter(status=1) 
-            elif user.role == "JD" :
-                    queryset = Chit.objects.filter(status =2) 
-            
-            return queryset[:300]
+            if self.kwargs['state'] =="initial" :
+                if user.role == "DT" :
+                    queryset = Chit.objects.filter(status=3,timestamp__gte=timezone.now()-timezone.timedelta(minutes=10))
+                elif user.role == "MD" :
+                        queryset = Chit.objects.filter(status=1,timestamp__gte=timezone.now()-timezone.timedelta(minutes=10)) 
+                elif user.role == "JD" :
+                        queryset = Chit.objects.filter(status =2,timestamp__gte=timezone.now()-timezone.timedelta(minutes=10)) 
+                queryset = queryset[:300]
+            else :
+                if user.role == "DT" :
+                    queryset = Chit.objects.filter(status=3)
+                elif user.role == "MD" :
+                        queryset = Chit.objects.filter(status=1) 
+                elif user.role == "JD" :
+                        queryset = Chit.objects.filter(status =2) 
+                     
+            return queryset
         
 
 

@@ -16,10 +16,10 @@ inputFieldDev = document.querySelector(".input_country") ;
 text = document.querySelector(".message textarea")
 
 
-const SetMessages = async ()=>{
+const SetMessages = async (url)=>{
     
-    new_messages= await  Messages()
-    result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id))
+    new_messages= await  Messages(url) ;
+    result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id)) 
     result.forEach(message=>{
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
@@ -123,7 +123,7 @@ form.addEventListener('submit',(e)=>{
 
 if(authState.value === "True"){
 
-    setInterval(SetMessages, 8000)
+    setInterval(()=>SetMessages("any"), 8000)
 }
 
 

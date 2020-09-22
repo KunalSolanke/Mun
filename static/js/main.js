@@ -1,6 +1,7 @@
-var countries ,nav_toggle,main_div,sidebar,width  ;
+var countries ,nav_toggle,main_div,sidebar,width,loadingWrapper=document.querySelector('.load'),afterLoad=document.querySelector('.after__load')  ;
 window.addEventListener('load',()=>{
-    SetMessages()
+    
+    SetMessages("initial")
     countries = document.querySelectorAll('.country')
     countries.forEach(country =>{
         country.addEventListener('click',()=>{
@@ -36,6 +37,11 @@ window.addEventListener('load',()=>{
             main_div.style.transform =`translateX(0px)` ;
         }
     })
+    
+    afterLoad.classList.add('active')
+    loadingWrapper.classList.add('inactive')
+    
+
   
 })
 

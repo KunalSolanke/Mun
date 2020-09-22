@@ -7,7 +7,7 @@ app_name = 'chits'
 
 
 urlpatterns = [
-    re_path(r'^api/messages/$',view=chitlist,name="chitlist") ,
+    re_path(r'^api/messages/(?P<state>.+)$',view=chitlist,name="chitlist") ,
     re_path(r'^api/messages/team$',view=team_chit_list,name="teamchitlist") ,
     path('deligate', deligate_index,{'role':"DT"} ,name = "deligate_index"),
     path('deligate/reply', deligate_reply,{'role':"DT"} ,name = "deligate_reply"),

@@ -15,9 +15,9 @@ csrf = document.querySelector(".csrf"),
 chit_div ;
 
 
-const SetMessages = async ()=>{
+const SetMessages = async (url)=>{
     
-    new_messages= await  Messages()
+    new_messages= await  Messages(url)
     result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id))
     result.forEach(message=>{
         const wrapper = document.createElement('div')
@@ -109,7 +109,7 @@ const SetMessages = async ()=>{
 
 if(authState.value === "True"){
 
-    setInterval(SetMessages, 8000)
+    setInterval(SetMessages("any"), 8000)
 }
 
 

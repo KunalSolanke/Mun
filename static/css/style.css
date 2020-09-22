@@ -7,6 +7,21 @@
 html{
     overflow-x: hidden  ;
 }
+.after__load{
+    display: none ;
+}
+.after__load.active{
+    display: contents ;
+}
+.load{
+    
+    height: 100vh;
+    z-index:10 ;
+}
+.load.inactive{
+    display: none ;
+    z-index:-1 ;
+}
 
 body{
     font-size:10px ;
@@ -15,6 +30,8 @@ body{
     font-weight:300 ;
     line-height: 20px;
     overflow: hidden;
+    transition: all .3s ease-in;
+    
    
 }
 .main_div{
@@ -111,7 +128,7 @@ nav .nav__toggle{
    opacity : 0 ;
    transform: translateY(-50%);
    text-align: center;
-    z-index: 1000000000000 ;
+    z-index: 5 ;
     cursor: pointer;
     padding :5px ;
 }
@@ -948,7 +965,7 @@ section.country_area{
     
     
     .main_area .chit_area .chits_box{
-        max-height: 80vh !important;
+        height: 80vh !important;
         
         width : 100% !important;
         

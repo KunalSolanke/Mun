@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{% static 'css/style.css'  %}">
 </head>
 <body>
+    <section class="load">{% include 'loading.html' %}</section>
+    <section class="after__load">
     <header>
         <div style="display:none">
             <input type="hidden" class="auth_state" value="{{ user.is_authenticated }}" />
@@ -45,7 +47,7 @@
              </div>
         </nav>
      </header>
-    <div class="main_div">
+     <div class="main_div">
         <div class="sidebar">
          <div class="flag">
              <div>
@@ -68,6 +70,7 @@
             {% endblock %}
         </div>
     </div>
+    </section>
     {% block js%} 
     {% endblock %}
 </body>

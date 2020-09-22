@@ -1,6 +1,6 @@
 let new_messages = [];
-const Messages = async ()=>{
-    const response =await fetch('/chits/api/messages/',{
+const Messages = async (url)=>{
+    const response =await fetch(`/chits/api/messages/${url}`,{
         method:'GET',
         mode:'cors',
         cache:'no-cache',

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}" >
 </head>
 <body>
+  <section class="load">{% include 'loading.html' %}</section>
   <section class="main__section">
     <div class="banner__wrapper">
      
@@ -72,5 +73,17 @@
 
     </div>
   </section>
+  <script>
+    let loadingWrapper=document.querySelector('.load'),afterLoad=document.querySelector('.main__section')  ;
+    window.addEventListener('load',()=>{
+    
+    afterLoad.classList.add('active')
+    loadingWrapper.classList.add('inactive')
+      
+    })
+
+
+    </script>
 </body>
+
 </html>
