@@ -42,6 +42,7 @@ class DeligateIndex(LoginRequiredMixin,View) :
 
     @method_decorator(user_check)
     def get(self,request,*args,**kwargs) :
+        
         countries = Country.objects.all().exclude(name=request.user.deligate_profile.country.name)
         context ={
             'countries':countries
@@ -285,15 +286,18 @@ class ChitListView(ListAPIView) :
 
     def get_queryset(self) :
         user = self.request.user 
-        queryset=[]
-        if user.role == "DT" :
-            queryset = Chit.objects.filter(status=3)
-        elif user.role == "MD" :
-                queryset = Chit.objects.filter(status=1) 
-        elif user.role == "JD" :
-                queryset = Chit.objects.filter(status =2) 
         
-        return queryset[:300]
+        queryset=[]
+        if(self.request.user.is_authenticated) :
+            if user.role == "DT" :
+                queryset = Chit.objects.filter(status=3)
+            elif user.role == "MD" :
+                    queryset = Chit.objects.filter(status=1) 
+            elif user.role == "JD" :
+                    queryset = Chit.objects.filter(status =2) 
+            
+            return queryset[:300]
+        
 
 
 chitlist = ChitListView.as_view()
@@ -315,6 +319,7 @@ class TeamChitListView(ListAPIView) :
 
     def get_queyset(self) :
         user = self.request.user
+        print(self.request.session)
         profile = user.deligate_profile 
         team = user.deligate_profile.team 
         queryset =[]

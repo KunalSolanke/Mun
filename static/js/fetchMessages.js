@@ -9,7 +9,13 @@ const Messages = async ()=>{
         }
     })
     const json = await response.json()
-    new_messages = json 
+    
+    if(json.detail && json.detail == "Authentication credentials were not provided."){
+       
+        window.location="/accounts/login" 
+        
+    }else{
+      new_messages = json }
     return new_messages
 }
 
