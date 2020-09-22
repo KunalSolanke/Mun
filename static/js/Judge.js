@@ -3,7 +3,7 @@ let textbox = document.querySelector(".chits_box"),
  errorMessage = "",
  form = document.querySelector("form"),
  old_messages=[],
- result =[] ;
+ result =[] ,authState=document.querySelector(".auth_state");
 
 
  var reply_to_id, type ="send",
@@ -108,6 +108,9 @@ const SetMessages = async ()=>{
     old_messages=new_messages ;
 }
 
-setInterval(SetMessages, 10000)
+if(authState.value === "True"){
+
+    setInterval(SetMessages, 8000)
+}
 
 

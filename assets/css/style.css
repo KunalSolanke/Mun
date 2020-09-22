@@ -15,6 +15,7 @@ body{
     font-weight:300 ;
     line-height: 20px;
     overflow: hidden;
+   
 }
 .main_div{
     display: flex;
@@ -24,9 +25,13 @@ body{
 }
 
 .main_div .sidebar{
-    min-width :150px !important ;
-    border:1.2px solid black ;
+    position: relative;
+   
+    min-width: 220px ;
+    
     overflow: hidden;
+    background-image : url('/static/images/grad_strip.png') ;
+    background-size: cover;
    
 }
 
@@ -35,10 +40,9 @@ body{
     padding : 1rem ;
 }
 .main_div .sidebar .flag >div{
-    width :100px ;
-    height : 100px ;
+    
     margin: 1rem auto ;
-    background-color: gray;
+    
     text-align: center;
     color : white ;
     
@@ -47,41 +51,57 @@ body{
     padding : 2.2rem 1rem ;
 
 }
-
+.main_div .sidebar .flag >div >img{
+    width: 120px;
+}
 
 .main_div .sidebar ul{
     
     list-style-type: none;
-    padding: .5rem 1rem;
+    text-align: center;
    
 }
 .main_div .sidebar ul li {
     color : gray ;
-     margin-top:.5rem;
+    padding: .5rem 0rem;
+    background-color: #2d2d2d;
 }
 .main_div .sidebar ul li a {
     text-decoration: none;
    
-    color :black 
+    color:white ; 
     ;
     font-size: 1rem;
     font-weight: 300;
 }
 
+.main_div .sidebar .contact__text {
+    position : absolute;
+    bottom :10px ;
+    text-align: center;
+    left: 0;
+    right: 0;
+    font-size: 0.7rem;
+    
+}
+
 .main_div .main_area{
+    border-top: 1px solid #E5E5E5;
+    background-color: #2d2d2d;
     flex-grow: 1;
     transition: all .5s;
 }
 
-.main_area header {
-   margin-bottom: 1rem;
+ header {
+   margin-bottom: 0rem;
 }
-.main_area header nav{
-    background-color: rgba(15, 13, 13, 0.932);
+ header nav{
+    background-color: #2D2D2D;
     color :white ;
     display : flex ;
     padding :1.3rem 1.6rem ;
     position :relative ;
+
     
 }
 
@@ -128,20 +148,20 @@ nav .nav__toggle .line2{
 nav .nav__toggle .line3{
     transition: all .3s ease-in;
 }
-.main_area header nav .logo{
+ header nav .logo{
   flex:1 ;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
-.main_area header nav .logout ul{
+ header nav .logout ul{
     list-style-type: none;
     font-size: .8rem;
     font-weight: 100;
 }
 
 
-.main_area header nav .logout ul li a {
+ header nav .logout ul li a {
     text-decoration: none;
     color : inherit ;
     font-size: .9rem;
@@ -151,11 +171,12 @@ nav .nav__toggle .line3{
     position: relative;
     display : flex ;
     height: 90vh;
+    margin-top:1rem ;
    
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    padding-right: 5rem;
+    padding-right: 4rem;
     margin-bottom: 10rem;
 }
 
@@ -164,10 +185,13 @@ nav .nav__toggle .line3{
     padding :1rem 3rem 1rem 5rem;
     
     height: 100%;
+   
 }
 .main_area .message_area .chit_send .send_area{
     width :90% ;
     height : 90% ;
+   
+
   
     
 }
@@ -176,12 +200,18 @@ nav .nav__toggle .line3{
     border: 1.2px solid black;
     border-bottom: none;
     padding :0.5rem 1rem ;
+    background-color: white;
+    transition: all .4s ease-in-out;
 }
 .main_area .message_area .chit_send .input_country.clicked,.main_area .message_area .chit_send input.clicked{
-    background-color: rgba(181, 182, 145, 0.123);
+    background-color: #4b4b4b ;
+    color : white ;
+    
 }
 
 .main_area .message_area .chit_send input{
+    transition: all .4s ease-in-out;
+    background-color:white;
    padding :  0.2rem 0.5rem;
    width: 80% ;
    outline :none ;
@@ -193,6 +223,7 @@ nav .nav__toggle .line3{
 }
 
 .main_area .message_area  form{
+    border-radius: 10px;
     height : 100% ;
 
 }
@@ -201,13 +232,14 @@ nav .nav__toggle .line3{
     border : 1.2px solid black ;
 }
 .main_area .message_area .chit_send textarea{
+    background-color: white ;
     outline: none ;
     border : none ;
     width : 100% ;
     height : 100%;
     padding: .5rem 1rem ;
     font-size: 1rem;
-    color :gray;
+    color :#2d2d2d;
     font-weight: lighter;
     resize: none;
     overflow: scroll;
@@ -217,6 +249,9 @@ nav .nav__toggle .line3{
 
 
 }
+.main_area .message_area .chit_send textarea::-webkit-scrollbar {
+    display: none;
+  }
 
 .main_area .message_area .chit_send .submit{
     text-align: right;
@@ -226,7 +261,7 @@ nav .nav__toggle .line3{
 .main_area .message_area button{
     background: none;
     box-shadow: none;
-    background-color: rgba(10, 7, 7, 0.89);
+   
     border : none ;
     margin-right : .5rem ;
 
@@ -234,10 +269,10 @@ nav .nav__toggle .line3{
     outline : none ;
     cursor: pointer;
     border-radius: .8rem;
-    padding : .32rem 1.8rem ;
+    padding : .38rem 1.8rem ;
     color :white ;
     transition: all .2s ;
-    border : 2px solid black ;
+    border : 1px solid white ;
   
   
 }
@@ -250,15 +285,17 @@ nav .nav__toggle .line3{
 
 .main_area .chit_area{
     flex:1;
-    padding-right: 5rem ;
+    padding-right: 4rem ;
     padding-top: 1rem;
     padding-bottom: 1rem;
    padding-left : 0rem ;
     height: 100%;
+   
 }
 
 
 .main_area .chit_area .chits_box{
+    background-color: #E0E0E0;
     
     height: 100% ;
     width : 95% ;
@@ -267,26 +304,47 @@ nav .nav__toggle .line3{
     scrollbar-color: rgb(245, 245, 232) rgb(225, 225, 236);
     scrollbar-width: none;
     scroll-behavior: smooth;
+    border-radius : 3px ;
+    
     
 }
 
+
+.main_area .chit_area .chits_box::-webkit-scrollbar {
+  display: none;
+}
+ 
+
+
 .main_area .chit_area .chits_box .reply_button{
     text-align: right;
+    margin-bottom: .5rem;
+    margin-top: .7rem;
+    
+    
 
+}
+
+.main_area .chit_area .chits_box .reply_button button{
+    background-color: #2d2d2d;
+    color :white ;
+    border : none ;
+    outline : none ;
 }
 .main_area .chit_area .chits_box .reply_button.clicked{
     background-color: white!important;
+    border: 1px solid #2d2d2d;
 }
 
 
 .main_area .chit_area .chits_box .single_chit{
-    font-size: .93rem;
+    font-size: .96rem;
     background-color: #fff;
     font-weight: lighter;
-    color : gray;
+    color :rgb(105, 102, 102);
     padding : .6rem 0.5rem ;
     box-shadow: 10px 20px 50px  grey ;
-    line-height: 1.5rem;
+    line-height: 1.3rem;
 
 }
 .main_area .chit_area .chits_box .single_chit .from,.main_area .chit_area .chits_box .single_chit .reply{
@@ -315,9 +373,9 @@ section.country_area{
 
 
 .country_area .countries{
-   border: 1px solid black;
+   border: 1px solid white;
    flex:1 ;
-   
+   background-color: white;
    position: relative;
    margin-left: 3rem;
    height : 100% ;
@@ -326,13 +384,25 @@ section.country_area{
    scrollbar-width: none;
    scroll-behavior: smooth;
 }
+
+.country_area .countries::-webkit-scrollbar {
+    display: none;
+  }
 .country_area .debate_heads{
     flex:1 ;
     padding : 1rem 1rem;
     height : 100% ;
-    border : 1px solid black ;
+    border : 1px solid white ;
+    background-color: white;
     margin-left :3rem ;
+    scrollbar-color: rgb(245, 245, 232) rgb(225, 225, 236);
+   scrollbar-width: none;
+   scroll-behavior: smooth;
 }
+
+.country_area .debate_heads::-webkit-scrollbar {
+    display: none;
+  }
 
 .country_area .head{
     display: flex ;
@@ -342,7 +412,7 @@ section.country_area{
     position: relative ;
     
     
-    border-bottom : 1px solid black
+    border-bottom : 1px solid #2d2d2d ;
 }
 .country_area .country{
     display: flex ;
@@ -350,7 +420,7 @@ section.country_area{
     
     padding :.7rem 1rem ;
    
-    border-bottom : 1px solid black
+    border-bottom : 1px solid #2d2d2d ;
 
 }
 .country_area .head >div{
@@ -413,26 +483,29 @@ section.country_area{
 @media (max-width:1200px){
   
     
+   .main_area .message_area{
+       padding-right: 1rem;
+   }
+    
+    .main_div .sidebar{
    
-    
-    
-    
+        min-width: 180px ;
+    }
     .main_div .sidebar .flag {
         padding : .5rem !important ;
     }
     .main_div .sidebar .flag >div{
-        width :80px !important ;
-        height : 80px !important;
+        
         margin: .5rem auto !important ;
         
         
         padding : 1.8rem 1rem ;
     
     }
-    .main_div .sidebar ul{
-        padding: 0rem 1rem;
-       
+    .main_div .sidebar .flag >div>img{
+        width:100px ;
     }
+    
     
     .main_div .sidebar ul li a {
       
@@ -545,31 +618,29 @@ section.country_area{
 
 /* tablets */
 @media (max-width:900px){
+    .main_div .sidebar{
+   
+        min-width: 120px ;}
   
     
    
-    .main_div .sidebar{
-        width :100px !important ;
-        
-    }
     
     
     .main_div .sidebar .flag {
-        padding : .5rem !important ;
+        padding : .1rem !important ;
     }
     .main_div .sidebar .flag >div{
-        width :80px !important ;
-        height : 80px !important;
-        margin: .5rem auto !important ;
+        
+        margin: .1rem auto !important ;
         
         
         padding : 1.8rem 1rem ;
     
     }
-    .main_div .sidebar ul{
-        padding: 0rem 1rem;
-       
+    .main_div .sidebar .flag >div>img{
+        width : 60px ;
     }
+    
     
     .main_div .sidebar ul li a {
       
@@ -654,6 +725,10 @@ section.country_area{
        
     
     }
+    header nav .logo{
+        font-size: .8rem;
+        font-weight: 500;
+    }
   
 }
 
@@ -676,6 +751,7 @@ section.country_area{
         max-height: 700px;
        
     }
+
     
 } 
 
@@ -684,7 +760,63 @@ section.country_area{
 
 
 
-
+@media (max-width:740px){
+    .main_div .sidebar{
+        position: absolute;
+        bottom: 0%;
+        right:100% ;
+        top:0% ;
+        min-width: 200px;
+        
+     }
+     
+     
+     .main_div .sidebar .flag {
+         padding : 1rem ;
+     }
+     .main_div .sidebar .flag >div{
+        
+         margin: 1rem auto ;
+        
+         text-align: center;
+         color : white ;
+         
+         font-size: 1.5rem;
+         font-weight: lighter;
+         padding : 2.2rem 1rem ;
+     
+     }
+     .main_div .sidebar .flag >div >img
+     {
+         width: 100px;
+     }
+     .main_div .sidebar ul{
+         
+         list-style-type: none;
+       
+        
+     }
+     .main_div .sidebar ul li {
+         color:white ;
+         margin-top:.5rem;
+     }
+     .main_div .sidebar ul li a {
+         text-decoration: none;
+        
+         color :white ; 
+         
+         font-size: .8rem;
+         font-weight: 300;
+     }
+     nav .nav__toggle{
+        opacity : 0.8 ;
+    }
+    header nav .logo{
+        font-size: .5rem;
+        font-weight: 500;
+    }
+    
+}
 
 
 
@@ -692,7 +824,9 @@ section.country_area{
 
 
 /* mobile-screen */
-@media (max-width:550px){
+@media (max-width:590px){
+
+
    
     
     .main_div{
@@ -705,6 +839,7 @@ section.country_area{
        bottom: 0%;
        right:100% ;
        top:0% ;
+       min-width: 200px;
        
     }
     
@@ -713,10 +848,9 @@ section.country_area{
         padding : 1rem ;
     }
     .main_div .sidebar .flag >div{
-        width :100px ;
-        height : 100px ;
+       
         margin: 1rem auto ;
-        background-color: gray;
+       
         text-align: center;
         color : white ;
         
@@ -725,22 +859,26 @@ section.country_area{
         padding : 2.2rem 1rem ;
     
     }
+    .main_div .sidebar .flag >div >img
+    {
+        width: 100px;
+    }
     .main_div .sidebar ul{
         
         list-style-type: none;
-        padding: .5rem 1rem;
+        
        
     }
     .main_div .sidebar ul li {
-        color : gray ;
+        color:white ;
          margin-top:.5rem;
     }
     .main_div .sidebar ul li a {
         text-decoration: none;
        
-        color :black 
-        ;
-        font-size: 1rem;
+        color :white ; 
+        
+        font-size: .8rem;
         font-weight: 300;
     }
     
@@ -801,10 +939,11 @@ section.country_area{
     }
 
     .main_area .chit_area{
-        flex:1;
-        padding: 1rem 2rem !important ;
+        flex:1!important;
+        padding: 1rem 1.5rem !important ;
         max-height: unset;
         height: 100%;
+        
     }
     
     
@@ -860,6 +999,10 @@ section.country_area{
     }
     nav .nav__toggle{
         opacity : 0.8 ;
+    }
+    header nav .logo{
+        font-size: .5rem;
+        font-weight: 500;
     }
     
 }

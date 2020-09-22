@@ -293,7 +293,7 @@ class ChitListView(ListAPIView) :
         elif user.role == "JD" :
                 queryset = Chit.objects.filter(status =2) 
         
-        return queryset[:75]
+        return queryset[:300]
 
 
 chitlist = ChitListView.as_view()

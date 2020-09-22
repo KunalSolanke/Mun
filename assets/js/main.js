@@ -15,7 +15,7 @@ window.addEventListener('load',()=>{
                 setTimeout(()=>{
                     inputFieldDev.classList.remove('clicked')
                     inputField.classList.remove('clicked')
-                },2000)
+                },1200)
         })
     })
 

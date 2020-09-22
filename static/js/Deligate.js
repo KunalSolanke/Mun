@@ -3,11 +3,12 @@ Success = "",
 errorMessage = "",
 form = document.querySelector("form"),
 old_messages=[],
-result =[] ,text;
+result =[] ,text,authState=document.querySelector(".auth_state");
 
 
 var reply_to_id, type ="send",
 url ,
+
 
 inputField = document.querySelector('#sendTo'),
 sendButton = document.querySelector('.chit_send_button'),
@@ -120,6 +121,9 @@ form.addEventListener('submit',(e)=>{
     },1000)
 })
 
-setInterval(SetMessages, 5000)
+if(authState.value === "True"){
+
+    setInterval(SetMessages, 8000)
+}
 
 
