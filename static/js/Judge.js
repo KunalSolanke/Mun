@@ -110,7 +110,7 @@ const SetMessages = async (url)=>{
 
 if(authState.value === "True"){
 
-    setInterval(SetMessages("any"), 8000)
+    setInterval(()=>SetMessages("any"), 8000)
 }
 
 

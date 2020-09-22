@@ -290,7 +290,7 @@ class ChitListView(ListAPIView) :
         
         queryset=[]
         if(self.request.user.is_authenticated) :
-            if self.kwargs['state'] =="initial" :
+            if self.kwargs['state'] !="initial" :
                 if user.role == "DT" :
                     queryset = Chit.objects.filter(status=3,timestamp__gte=timezone.now()-timezone.timedelta(minutes=10))
                 elif user.role == "MD" :

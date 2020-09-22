@@ -124,5 +124,7 @@ var SetMessages = function SetMessages(url) {
 };
 
 if (authState.value === "True") {
-  setInterval(SetMessages("any"), 8000);
+  setInterval(function () {
+    return SetMessages("any");
+  }, 8000);
 }

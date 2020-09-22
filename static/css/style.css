@@ -279,23 +279,24 @@ nav .nav__toggle .line3{
     background: none;
     box-shadow: none;
    
-    border : none ;
+   
     margin-right : .5rem ;
 
 
     outline : none ;
     cursor: pointer;
     border-radius: .8rem;
-    padding : .38rem 1.8rem ;
+    padding : .34rem 1.8rem ;
     color :white ;
     transition: all .2s ;
-    border : 1px solid white ;
+    border : 1.5px solid white ;
   
   
 }
 .main_area .message_area button.clicked{
     background-color: white!important;
     color :black!important ;
+    
 }
 
 
@@ -345,12 +346,12 @@ nav .nav__toggle .line3{
 .main_area .chit_area .chits_box .reply_button button{
     background-color: #2d2d2d;
     color :white ;
-    border : none ;
+    border : 2px solid #2d2d2d ;
     outline : none ;
 }
 .main_area .chit_area .chits_box .reply_button.clicked{
     background-color: white!important;
-    border: 1px solid #2d2d2d;
+    
 }
 
 
