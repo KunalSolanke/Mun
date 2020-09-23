@@ -118,6 +118,7 @@ var SetMessages = function SetMessages(url) {
             wrapper.appendChild(content);
             wrapper.setAttribute("id", "".concat(message.id));
             wrapper.appendChild(button_wrapper);
+            wrapper.style.transform = "translate(0px)";
             textbox.appendChild(wrapper);
           });
           old_messages = new_messages;
