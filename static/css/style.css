@@ -713,9 +713,9 @@ section.country_area{
     .main_area .message_area{
         
         height: 90vh;
-       max-height : 600px ;
+       max-height : 1000px ;
         
-        padding-right: 0rem !important;
+        padding: 1rem ;
         margin-bottom: 4rem;
     }
     
@@ -794,7 +794,7 @@ section.country_area{
  @media (min-width : 1024px){
     .main_area .message_area{
          
-       max-height : 700px ;
+       max-height : 1000px ;
            
     }
     
@@ -971,7 +971,7 @@ section.country_area{
     
     .main_area .message_area{
         height: auto !important;;
-        padding-right: 0rem !important;
+        padding: 0rem ;
         margin-bottom: 3rem !important;
         flex-wrap:wrap-reverse ;
         max-height: unset;
