@@ -65,7 +65,7 @@ const SetMessages = async (url)=>{
                 
                 wrapper.classList.add('slide__out')
                setTimeout(()=>{
-                chit_div.remove()},1000)
+                chit_div.remove()},500)
                 
                })
             .catch(error=>errorMessage=error.message)
@@ -96,7 +96,7 @@ const SetMessages = async (url)=>{
                 chit_div =document.getElementById(message.id)
                 wrapper.classList.add('slide__out')
                 setTimeout(()=>{
-                    chit_div.remove()},1000)
+                    chit_div.remove()},500)
             })
             .catch(error=>errorMessage=error.message)
             setTimeout(()=>{

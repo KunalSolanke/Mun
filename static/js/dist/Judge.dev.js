@@ -74,7 +74,7 @@ var SetMessages = function SetMessages(url) {
                 wrapper.classList.add('slide__out');
                 setTimeout(function () {
                   chit_div.remove();
-                }, 1000);
+                }, 500);
               })["catch"](function (error) {
                 return errorMessage = error.message;
               });
@@ -103,7 +103,7 @@ var SetMessages = function SetMessages(url) {
                 wrapper.classList.add('slide__out');
                 setTimeout(function () {
                   chit_div.remove();
-                }, 1000);
+                }, 500);
               })["catch"](function (error) {
                 return errorMessage = error.message;
               });
