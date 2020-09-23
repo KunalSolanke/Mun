@@ -37,9 +37,10 @@ window.addEventListener('load',()=>{
             main_div.style.transform =`translateX(0px)` ;
         }
     })
+    setTimeout(()=>{
     
     afterLoad.classList.add('active')
-    loadingWrapper.classList.add('inactive')
+    loadingWrapper.classList.add('inactive')},1000)
     
 
   

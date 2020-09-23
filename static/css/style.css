@@ -323,9 +323,13 @@ nav .nav__toggle .line3{
     scrollbar-width: none;
     scroll-behavior: smooth;
     border-radius : 3px ;
+    transition: all .3s ease-in;
     
     
 }
+
+
+
 
 
 .main_area .chit_area .chits_box::-webkit-scrollbar {
@@ -363,8 +367,38 @@ nav .nav__toggle .line3{
     padding : .6rem 0.5rem ;
     box-shadow: 10px 20px 50px  grey ;
     line-height: 1.3rem;
+    transform: translateX(100%);
+    transition: all .3s ease-in;
+    animation :slide-in .3s forwards ease-in ;
 
 }
+.main_area .chit_area .chits_box .single_chit.slide__out{
+    animation:slide-out .3s forwards ease-in;
+}
+
+@keyframes slide-in{
+    0%{
+        transform: translateX(100%);
+        opacity:0 ;
+
+    }
+    100%{
+        transform: translateX(0%);
+        opacity:1;
+        
+    }
+}
+
+@keyframes slide-out{
+   
+    100%{
+        transform: translateX(-100%);
+        
+
+    }
+    
+}
+
 .main_area .chit_area .chits_box .single_chit .from,.main_area .chit_area .chits_box .single_chit .reply{
     margin-bottom: .6rem;
 }

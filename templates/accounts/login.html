@@ -76,9 +76,9 @@
   <script>
     let loadingWrapper=document.querySelector('.load'),afterLoad=document.querySelector('.main__section')  ;
     window.addEventListener('load',()=>{
-    
+    setTimeout(()=>{
     afterLoad.classList.add('active')
-    loadingWrapper.classList.add('inactive')
+    loadingWrapper.classList.add('inactive')},1000)
       
     })
 

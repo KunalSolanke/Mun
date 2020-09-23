@@ -31,9 +31,10 @@ var SetMessages = function SetMessages(url) {
               return message.id === message2.id;
             });
           });
-          result.forEach(function (message) {
+          result.forEach(function (message, i) {
             var wrapper = document.createElement('div');
             wrapper.classList.add("single_chit");
+            wrapper.style.animationDelay = "".concat(i * 0.1, "s");
             var header = document.createElement('div');
             header.classList.add("from");
             var content = document.createElement('div');
@@ -70,7 +71,10 @@ var SetMessages = function SetMessages(url) {
               }).then(function (data) {
                 Success = data.message;
                 chit_div = document.getElementById(message.id);
-                chit_div.remove();
+                wrapper.classList.add('slide__out');
+                setTimeout(function () {
+                  chit_div.remove();
+                }, 1000);
               })["catch"](function (error) {
                 return errorMessage = error.message;
               });
@@ -96,7 +100,10 @@ var SetMessages = function SetMessages(url) {
               }).then(function (data) {
                 Success = data.message;
                 chit_div = document.getElementById(message.id);
-                chit_div.remove();
+                wrapper.classList.add('slide__out');
+                setTimeout(function () {
+                  chit_div.remove();
+                }, 1000);
               })["catch"](function (error) {
                 return errorMessage = error.message;
               });

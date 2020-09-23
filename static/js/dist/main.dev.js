@@ -40,6 +40,8 @@ window.addEventListener('load', function () {
       main_div.style.transform = "translateX(0px)";
     }
   });
-  afterLoad.classList.add('active');
-  loadingWrapper.classList.add('inactive');
+  setTimeout(function () {
+    afterLoad.classList.add('active');
+    loadingWrapper.classList.add('inactive');
+  }, 1000);
 });

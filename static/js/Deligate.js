@@ -20,9 +20,11 @@ const SetMessages = async (url)=>{
     
     new_messages= await  Messages(url) ;
     result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id)) 
-    result.forEach(message=>{
+    result.forEach((message,i)=>{
+        
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
+        wrapper.style.animationDelay =`${i*0.1}s` ;
         const header = document.createElement('div')
         header.classList.add("from")
         const content = document.createElement('div')

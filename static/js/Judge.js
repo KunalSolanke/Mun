@@ -18,9 +18,10 @@ const SetMessages = async (url)=>{
     
     new_messages= await  Messages(url)
     result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id))
-    result.forEach(message=>{
+    result.forEach((message,i)=>{
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
+        wrapper.style.animationDelay =`${i*0.1}s` ;
         const header = document.createElement('div')
         header.classList.add("from")
         const content = document.createElement('div')
@@ -46,6 +47,7 @@ const SetMessages = async (url)=>{
         RatifyButton.addEventListener('click',()=>{
             RatifyButton.disabled=true 
             RatifyButton.classList.add('clicked')
+            
             fetch('/chits/judge/',{
                 method:'POST',
                 body:JSON.stringify({
@@ -60,12 +62,15 @@ const SetMessages = async (url)=>{
             .then(data=>{
                 Success=data.message
                 chit_div =document.getElementById(message.id)
-                chit_div.remove()
+                wrapper.classList.add('slide__out')
+                setTimeout(()=>{
+                    chit_div.remove()},1000)
             })
             .catch(error=>errorMessage=error.message)
             setTimeout(()=>{
                 RatifyButton.disabled=false
                 RatifyButton.classList.remove('clicked') 
+
               
             },2000)
         })
@@ -86,7 +91,9 @@ const SetMessages = async (url)=>{
             .then(response=>response.json())
             .then(data=>{Success=data.message
                 chit_div =document.getElementById(message.id)
-                chit_div.remove()}
+                wrapper.classList.add('slide__out')
+                setTimeout(()=>{
+                    chit_div.remove()},1000)}
                 )
             .catch(error=>errorMessage=error.message)
 

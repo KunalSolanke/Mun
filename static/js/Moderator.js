@@ -19,9 +19,11 @@ const SetMessages = async (url)=>{
     
     new_messages= await  Messages(url)
     result= new_messages.filter((message)=>!old_messages.some((message2)=>message.id===message2.id))
-    result.forEach(message=>{
+    result.forEach((message,i)=>{
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
+        
+        wrapper.style.animationDelay =`${i*0.1}s` ;
         const header = document.createElement('div')
         header.classList.add("from")
         const content = document.createElement('div')
@@ -45,6 +47,7 @@ const SetMessages = async (url)=>{
         ApproveButton.addEventListener('click',()=>{
             ApproveButton.disabled=true 
             ApproveButton.classList.add('clicked')
+           
             fetch('/chits/moderator/',{
                 
                 method:'POST',
@@ -59,7 +62,11 @@ const SetMessages = async (url)=>{
             .then(response=>response.json())
             .then(data=>{Success=data.message
                 chit_div =document.getElementById(message.id)
-                chit_div.remove()
+                
+                wrapper.classList.add('slide__out')
+               setTimeout(()=>{
+                chit_div.remove()},1000)
+                
                })
             .catch(error=>errorMessage=error.message)
 
@@ -72,6 +79,7 @@ const SetMessages = async (url)=>{
         DisapproveButton.addEventListener('click',()=>{
             DisapproveButton.disabled=true 
             DisapproveButton.classList.add('clicked')
+           
             fetch('/chits/moderator/disapprove/',{
                 method:'POST',
                 body:JSON.stringify({
@@ -86,14 +94,16 @@ const SetMessages = async (url)=>{
             .then(data=>{
                 Success=data.message
                 chit_div =document.getElementById(message.id)
-                chit_div.remove()
+                wrapper.classList.add('slide__out')
+                setTimeout(()=>{
+                    chit_div.remove()},1000)
             })
             .catch(error=>errorMessage=error.message)
             setTimeout(()=>{
                 DisapproveButton.disabled=false
                 DisapproveButton.classList.remove('clicked') 
               
-            },2000)
+            },1000)
         })
 
         button_wrapper.appendChild(ApproveButton)
@@ -102,6 +112,7 @@ const SetMessages = async (url)=>{
         wrapper.appendChild(content)
         wrapper.appendChild(button_wrapper)
         wrapper.setAttribute("id",`${message.id}`)
+        wrapper.style.transform = "translate(0px)"
         textbox.appendChild(wrapper)
     })
     old_messages=new_messages ;
