@@ -34,7 +34,7 @@ var SetMessages = function SetMessages(url) {
           result.forEach(function (message, i) {
             var wrapper = document.createElement('div');
             wrapper.classList.add("single_chit");
-            wrapper.style.animationDelay = "".concat(i * 0.1, "s");
+            wrapper.style.animationDelay = "".concat((result.length - i - 1) * 0.1, "s");
             var header = document.createElement('div');
             header.classList.add("from");
             var content = document.createElement('div');

@@ -21,7 +21,7 @@ const SetMessages = async (url)=>{
     result.forEach((message,i)=>{
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
-        wrapper.style.animationDelay =`${i*0.1}s` ;
+        wrapper.style.animationDelay =`${(result.length-i-1)*0.1}s` ;
         const header = document.createElement('div')
         header.classList.add("from")
         const content = document.createElement('div')
