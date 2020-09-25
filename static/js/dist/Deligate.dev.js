@@ -34,7 +34,7 @@ var SetMessages = function SetMessages(url) {
           result.forEach(function (message, i) {
             var wrapper = document.createElement('div');
             wrapper.classList.add("single_chit");
-            wrapper.style.animationDelay = "".concat(i * 0.1, "s");
+            wrapper.style.animationDelay = "".concat((result.length - i - 1) * 0.1, "s");
             var header = document.createElement('div');
             header.classList.add("from");
             var content = document.createElement('div');
@@ -71,7 +71,7 @@ var SetMessages = function SetMessages(url) {
             wrapper.appendChild(content);
             wrapper.setAttribute("id", "".concat(message.id));
             wrapper.appendChild(button_wrapper);
-            textbox.appendChild(wrapper);
+            textbox.prepend(wrapper);
           });
           old_messages = new_messages;
 

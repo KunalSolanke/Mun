@@ -24,7 +24,7 @@ const SetMessages = async (url)=>{
         
         const wrapper = document.createElement('div')
         wrapper.classList.add("single_chit")
-        wrapper.style.animationDelay =`${i*0.1}s` ;
+        wrapper.style.animationDelay =`${(result.length-i-1)*0.1}s` ;
         const header = document.createElement('div')
         header.classList.add("from")
         const content = document.createElement('div')
@@ -62,7 +62,7 @@ const SetMessages = async (url)=>{
         wrapper.appendChild(content)
         wrapper.setAttribute("id",`${message.id}`)
         wrapper.appendChild(button_wrapper)
-        textbox.appendChild(wrapper)
+        textbox.prepend(wrapper)
     })
      old_messages=new_messages ;
 }

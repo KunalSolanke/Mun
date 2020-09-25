@@ -113,7 +113,7 @@ const SetMessages = async (url)=>{
         wrapper.appendChild(button_wrapper)
         wrapper.setAttribute("id",`${message.id}`)
         wrapper.style.transform = "translate(0px)"
-        textbox.appendChild(wrapper)
+        textbox.prepend(wrapper)
     })
     old_messages=new_messages ;
 }
